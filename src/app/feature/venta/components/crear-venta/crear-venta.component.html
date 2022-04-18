@@ -1,0 +1,19 @@
+  <!-- FORM -->
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <form class="card-body" [formGroup]="ventaForm" (ngSubmit)="crear()">
+        <h3 class="card-title">Crear venta de un Componente electronico</h3>
+        <label for="idProducto">IdProducto</label>
+        <input type="text" name="idProducto" #newtitle class="form-control"  formControlName="idProducto" autofocus>
+
+        <label for="idUsuario">IdUsuario</label>
+        <input type="text" name="idUsuario" #newlink class="form-control"  formControlName="idUsuario">
+
+        <label for="unidadVenta">UnidadVenta</label>
+        <input type="text" name="unidadVenta" #newlink class="form-control"  formControlName="unidadVenta">
+
+        <button  class="btn btn-primary btn-block mt-4">
+          Crear Venta
+        </button>
+      </form>
+    </div>

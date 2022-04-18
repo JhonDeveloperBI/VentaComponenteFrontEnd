@@ -1,0 +1,18 @@
+<!-- NAVIGATION -->
+<div class="container p-4">
+    <div class="row">
+      <!-- FORM -->
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <form class="card-body" [formGroup]="usuarioForm" (ngSubmit)="borrar()">
+            <h3 class="card-title">Eliminar un Usuario</h3>
+            <label for="id">IdUsuario</label>
+            <input type="text" name="id" #newtitle class="form-control"  formControlName="id" autofocus>
+            <button  class="btn btn-primary btn-block mt-4">
+              Borrar Usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
