@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../shared/service/producto.service';
+import { ArticuloService } from '../../shared/service/articulo.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
 
 @Component({
-  selector: 'app-crear-producto',
-  templateUrl: './crear-producto.component.html',
-  styleUrls: ['./crear-producto.component.css']
+  selector: 'app-crear-articulo',
+  templateUrl: './crear-articulo.component.html',
+  styleUrls: ['./crear-articulo.component.css']
 })
-export class CrearProductoComponent implements OnInit {
-  productoForm: FormGroup;
-  constructor(protected productoServices: ProductoService) { }
+export class CrearArticuloComponent implements OnInit {
+  articuloForm: FormGroup;
+  constructor(protected articuloServices: ArticuloService) { }
 
   ngOnInit() {
-    this.construirFormularioProducto();
+    this.construirFormularioArticulo();
   }
 
-  cerar() {
-    this.productoServices.guardar(this.productoForm.value);
+  crear() {
+    this.articuloServices.guardar(this.articuloForm.value);
   }
 
-  private construirFormularioProducto() {
-    this.productoForm = new FormGroup({
+  private construirFormularioArticulo() {
+    this.articuloForm = new FormGroup({
       id: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])

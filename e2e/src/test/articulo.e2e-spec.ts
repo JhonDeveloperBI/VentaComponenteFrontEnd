@@ -1,26 +1,26 @@
 import { browser, logging } from 'protractor';
 import { NavbarPage } from '../page/navbar/navbar.po';
 import { AppPage } from '../app.po';
-import { ProductoPage } from '../page/producto/producto.po';
+import { ArticuloPage } from '../page/articulo/articulo.po';
 
 describe('workspace-project Producto', () => {
     let page: AppPage;
     let navBar: NavbarPage;
-    let producto: ProductoPage;
+    let producto: ArticuloPage;
 
     beforeEach(() => {
         page = new AppPage();
         navBar = new NavbarPage();
-        producto = new ProductoPage();
+        producto = new ArticuloPage();
     });
 
-    it('Deberia crear producto', () => {
+    it('Deberia crear articulo', () => {
         const ID_PRODUCTO = '001';
-        const DESCRIPCION_PRODUCTO = 'Producto de pruebas';
+        const DESCRIPCION_PRODUCTO = 'articulo de pruebas';
 
         page.navigateTo();
-        navBar.clickBotonProductos();
-        producto.clickBotonCrearProductos();
+        navBar.clickBotonArticulo();
+        producto.clickBotonCrearArticulos();
         producto.ingresarId(ID_PRODUCTO);
         producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
 
@@ -28,11 +28,11 @@ describe('workspace-project Producto', () => {
         // expect(<>).toEqual(<>);
     });
 
-    it('Deberia listar productos', () => {
+    it('Deberia listar articulos', () => {
         page.navigateTo();
-        navBar.clickBotonProductos();
-        producto.clickBotonListarProductos();
+        navBar.clickBotonArticulo();
+        producto.clickBotonListarArticulos();
 
-        expect(4).toBe(producto.contarProductos());
+        expect(4).toBe(producto.contarArticulos());
     });
 });

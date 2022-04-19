@@ -13,4 +13,3 @@ export class UsuarioComponent implements OnInit {
   }
 
 }
-© 2022 GitHub

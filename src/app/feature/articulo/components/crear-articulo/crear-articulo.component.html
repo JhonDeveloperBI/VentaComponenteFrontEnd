@@ -1,11 +1,11 @@
-<h1>Registrar Componente Electronico</h1>
-<form [formGroup]="productoForm" (ngSubmit)="cerar()">
+<h1>Registrar Artículo Electrónico</h1>
+<form [formGroup]="articuloForm" (ngSubmit)="crear()">
   <div class="row">
     <div class="col-sm-2">
       <label>Id:</label>
     </div>
     <div class="col-sm-4">
-      <input validar type="text" id="idProducto" name="idProducto" placeholder="Id producto" class="form-control"
+      <input validar type="text" id="idArticulo" name="idArticulo" placeholder="Id Articulo" class="form-control"
         formControlName="id">
     </div>
   </div>
@@ -14,7 +14,7 @@
       <label>Descripción:</label>
     </div>
     <div class="col-sm-4">
-      <input validar type="text" id="descripcionProducto" name="descripcion" placeholder="Descripción producto"
+      <input validar type="text" id="descripcionArticulo" name="descripcion" placeholder="Descripción artículo"
         class="form-control" formControlName="descripcion">
     </div>
   </div>

@@ -31,7 +31,7 @@
         "src/app/feature/home/*"
       ],
       "@producto/*": [
-        "src/app/feature/producto/*"
+        "src/app/feature/articulo/*"
       ],
       "@venta/*": [
         "src/app/feature/venta/*"

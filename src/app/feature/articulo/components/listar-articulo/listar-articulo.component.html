@@ -1,0 +1,7 @@
+<div id="articulos">
+  <ul class="articulos">
+    <li *ngFor="let item of listaArticulos | async">
+      <span>{{item.id}}</span> {{item.descripcion}}
+    </li>
+  </ul>
+</div>

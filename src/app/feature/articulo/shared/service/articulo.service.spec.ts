@@ -1,61 +1,61 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ProductoService } from './producto.service';
+import { ArticuloService } from './articulo.service';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Producto } from '../model/producto';
+import { Articulo } from '../model/articulo';
 import { HttpResponse } from '@angular/common/http';
 
-describe('ProductoService', () => {
+describe('ArticuloService', () => {
   let httpMock: HttpTestingController;
-  let service: ProductoService;
-  const apiEndpointProductoConsulta = `${environment.endpoint}/tiposFamilia`;
-  const apiEndpointProductos = `${environment.endpoint}/productos`;
+  let service: ArticuloService;
+  const apiEndpointArticulosConsulta = `${environment.endpoint}/articulos`;
+  const apiEndpointArticulos = `${environment.endpoint}/articulos`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProductoService, HttpService]
+      providers: [ArticuloService, HttpService]
     });
     httpMock = injector.inject(HttpTestingController);
-    service = TestBed.inject(ProductoService);
+    service = TestBed.inject(ArticuloService);
   });
 
   it('should be created', () => {
-    const productService: ProductoService = TestBed.inject(ProductoService);
+    const productService: ArticuloService = TestBed.inject(ArticuloService);
     expect(productService).toBeTruthy();
   });
 
   it('deberia listar productos', () => {
     const dummyProductos = [
-      new Producto('1', 'Producto 1'), new Producto('2', 'Producto 2')
+      new Articulo('1', 'Producto 1'), new Articulo('2', 'Producto 2')
     ];
     service.consultar().subscribe(productos => {
       expect(productos.length).toBe(2);
       expect(productos).toEqual(dummyProductos);
     });
-    const req = httpMock.expectOne(apiEndpointProductoConsulta);
+    const req = httpMock.expectOne(apiEndpointArticulosConsulta);
     expect(req.request.method).toBe('GET');
     req.flush(dummyProductos);
   });
 
   it('deberia crear un producto', () => {
-    const dummyProducto = new Producto('1', 'Producto 1');
+    const dummyProducto = new Articulo('1', 'Producto 1');
     service.guardar(dummyProducto).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(apiEndpointProductos);
+    const req = httpMock.expectOne(apiEndpointArticulos);
     expect(req.request.method).toBe('POST');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
   it('deberia eliminar un producto', () => {
-    const dummyProducto = new Producto('1', 'Producto 1');
+    const dummyProducto = new Articulo('1', 'Producto 1');
     service.eliminar(dummyProducto).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(`${apiEndpointProductos}/1`);
+    const req = httpMock.expectOne(`${apiEndpointArticulos}/1`);
     expect(req.request.method).toBe('DELETE');
     req.event(new HttpResponse<boolean>({body: true}));
   });
