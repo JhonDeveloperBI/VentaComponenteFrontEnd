@@ -1,21 +1,39 @@
-<h1>Registrar Artículo Electrónico</h1>
+
 <form [formGroup]="articuloForm" (ngSubmit)="crear()">
+  <h1 class="text-center">Registrar Artículo Electrónico</h1>
+  <br>
   <div class="row">
     <div class="col-sm-2">
-      <label>Id:</label>
+      <label>Nombre:</label>
     </div>
     <div class="col-sm-4">
-      <input validar type="text" id="idArticulo" name="idArticulo" placeholder="Id Articulo" class="form-control"
-        formControlName="id">
+      <input validar type="text" id="nombreArticulo" name="nombreArticulo" placeholder="Nombre artículo"
+        class="form-control" formControlName="nombreArticulo">
     </div>
   </div>
+
   <div class="row">
     <div class="col-sm-2">
-      <label>Descripción:</label>
+      <label>Unidades:</label>
     </div>
     <div class="col-sm-4">
-      <input validar type="text" id="descripcionArticulo" name="descripcion" placeholder="Descripción artículo"
-        class="form-control" formControlName="descripcion">
+      <input validar type="text" id="unidades" name="unidades" placeholder="Unidades artículo"
+        class="form-control" formControlName="unidades">
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Precio:</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="precio" name="precio" placeholder="Precio artículo"
+        class="form-control" formControlName="precio">
+    </div>
+  </div>
+
+  <button  class="btn btn-primary btn-block mt-4">
+    Guardar Artículo
+  </button>
+
 </form>

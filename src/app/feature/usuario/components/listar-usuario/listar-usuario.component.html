@@ -2,15 +2,15 @@
 <div id="Usuarios">
   <table class="table">
     <thead> <tr>
-      <th scope="col">IdUsuario</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Email</th>
+      <th scope="col">FechaCreacion</th>
+      <th scope="col">Acciones</th>
     </tr></thead>
     <tbody>
       <tr *ngFor="let item of listarUsuarios | async">
-        <th scope="row">{{item.id}}</th> 
         <td>{{item.nombre}}</td>
-        <td>{{item.email}}</td>
+        <td>{{item.fechaCreacion}}</td>
+        <td><Button class="badge badge-danger mr-2" (click)='borrarUsuario( item )' > Borrar Usuario</Button></td>
       </tr>
      </tbody>
   </table>

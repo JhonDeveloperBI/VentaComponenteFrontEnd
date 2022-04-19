@@ -1,9 +1,14 @@
 export class Articulo {
-    id: string;
-    descripcion: string;
 
-    constructor(id: string, descripcion: string) {
-        this.id = id;
-        this.descripcion = descripcion;
+    idArticulo: number;
+    nombreArticulo: string;
+    unidades: number;
+    precio: number;
+
+    constructor(idArticulo: number, nombreArticulo: string, unidades: number, precio: number) {
+        this.idArticulo = idArticulo;
+        this.nombreArticulo = nombreArticulo;
+        this.unidades = unidades;
+        this.precio = precio;
     }
 }

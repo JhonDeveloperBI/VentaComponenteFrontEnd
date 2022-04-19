@@ -34,7 +34,7 @@ export class CrearUsuarioComponent implements OnInit {
   private construirFormularioUsuario() {
     this.usuarioForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required])
+      clave: new FormControl('', [Validators.required])
                                                             });
   }
 

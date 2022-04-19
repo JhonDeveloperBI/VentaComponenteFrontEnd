@@ -3,8 +3,7 @@
   <table class="table"> 
     <caption> lista de ventas</caption>
     <thead> <tr>
-      <th scope="col">IdVenta</th>
-      <th scope="col">IdLibro</th>
+      <th scope="col">IdArticulo</th>
       <th scope="col">IdUsuario</th>
       <th scope="col">CantidadVenta</th>
       <th scope="col">PrecioVenta</th>
@@ -13,8 +12,7 @@
     </tr></thead>
     <tbody>
       <tr *ngFor="let item of listaVentas | async">
-        <th scope="row">{{item.id}}</th> 
-        <td>{{item.idLibro}}</td>
+        <td>{{item.IdArticulo}}</td>
         <td>{{item.idUsuario}}</td>
         <td>{{item.unidadVenta}} </td>
         <td>{{item.precioVenta}}</td>

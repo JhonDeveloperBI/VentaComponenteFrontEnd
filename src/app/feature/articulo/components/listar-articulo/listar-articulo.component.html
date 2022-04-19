@@ -1,7 +1,21 @@
+<br>
 <div id="articulos">
-  <ul class="articulos">
-    <li *ngFor="let item of listaArticulos | async">
-      <span>{{item.id}}</span> {{item.descripcion}}
-    </li>
-  </ul>
+  <table class="table"> 
+    <thead> 
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Unidades</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Acciones</th> 
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let articulo of listaArticulos | async">
+        <td>{{articulo.nombreArticulo}}</td>
+        <td>{{articulo.unidades}}</td>
+        <td>{{articulo.precio}} </td>
+        <td><Button class="badge badge-danger mr-2" (click)='borrarArticulo( articulo )' > Borrar Artículo</Button></td>
+      </tr>
+     </tbody>
+  </table>
 </div>
+
