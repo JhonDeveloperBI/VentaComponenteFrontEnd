@@ -49,13 +49,13 @@ describe('CrearArticuloComponent', () => {
 
   it('Registrando componente electronico', () => {
     expect(component.articuloForm.valid).toBeFalsy();
-    component.articuloForm.controls.id.setValue('001');
-    component.articuloForm.controls.descripcion.setValue('Componente test');
+    component.articuloForm.controls.nombreArticulo.setValue('Componente test');
+    component.articuloForm.controls.unidades.setValue(10);
+    component.articuloForm.controls.precio.setValue(1000);
+    
     expect(component.articuloForm.valid).toBeTruthy();
 
     component.crear();
 
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
   });
 });

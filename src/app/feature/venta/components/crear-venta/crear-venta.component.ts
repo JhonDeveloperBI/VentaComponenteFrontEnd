@@ -33,7 +33,7 @@ export class CrearVentaComponent implements OnInit {
 
   private construirFormularioVenta() {
     this.ventaForm = new FormGroup({
-      idProducto: new FormControl('', [Validators.required]),
+      idArticulo: new FormControl('', [Validators.required]),
       idUsuario: new FormControl('', [Validators.required]),
       unidadVenta: new FormControl('', [Validators.required])
                                                             });
