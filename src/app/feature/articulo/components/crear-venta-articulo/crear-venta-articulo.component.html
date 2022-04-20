@@ -3,13 +3,13 @@
     <div class="card">
       <form class="card-body" [formGroup]="ventaForm" (ngSubmit)="crear()">
         <h3 class="card-title">Crear venta de un componente electrónico</h3>
-        <label for="idArticulo">IdArticulo</label>
         <input type="hidden" name="idArticulo" #newtitle class="form-control"  formControlName="idArticulo" autofocus>
+        <input type="hidden" name="idUsuario" #newlink class="form-control"  formControlName="idUsuario">
+        
+        <label for="nombreUsuario">Nombre Usuario</label>
+        <input type="text" name="nombreUsuario" #newlink class="form-control"  formControlName="nombreUsuario" readonly>
 
-        <label for="idUsuario">IdUsuario</label>
-        <input type="text" name="idUsuario" #newlink class="form-control"  formControlName="idUsuario">
-
-        <label for="unidadVenta">UnidadVenta</label>
+        <label for="unidadVenta">Unidad Venta</label>
         <input type="text" name="unidadVenta" #newlink class="form-control"  formControlName="unidadVenta">
 
         <button  class="btn btn-primary btn-block mt-4">

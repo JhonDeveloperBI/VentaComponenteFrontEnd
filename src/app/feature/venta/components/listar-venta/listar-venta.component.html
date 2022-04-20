@@ -1,23 +1,20 @@
 <br>
 <div id="ventas" >
   <table class="table"> 
-    <caption> lista de ventas</caption>
     <thead> <tr>
       <th scope="col">IdArticulo</th>
       <th scope="col">IdUsuario</th>
       <th scope="col">CantidadVenta</th>
-      <th scope="col">PrecioVenta</th>
+      <th scope="col">PrecioUnidad</th>
       <th scope="col">DetalleDescuento</th>
-      <th scope="col">FechaVenta</th>
     </tr></thead>
     <tbody>
-      <tr *ngFor="let item of listaVentas | async">
-        <td>{{item.IdArticulo}}</td>
-        <td>{{item.idUsuario}}</td>
-        <td>{{item.unidadVenta}} </td>
-        <td>{{item.precioVenta}}</td>
-        <td>{{item.detalleVenta}}</td>
-        <td>{{item.fechaVenta}} </td>
+      <tr *ngFor="let venta of listaVentas | async">
+        <td>{{venta.idArticulo}}</td>
+        <td>{{venta.idUsuario}}</td>
+        <td>{{venta.unidadVenta}} </td>
+        <td>{{venta.precioUnidad}}</td>
+        <td>{{venta.detalleVentaArticulo}}</td>
       </tr>
      </tbody>
   </table>

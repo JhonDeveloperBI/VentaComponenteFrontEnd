@@ -1,12 +1,12 @@
 export class Venta {
 
-    idProducto: number;
+    idArticulo: number;
     idUsuario: number;
     unidadVenta: number;
 
 
-    constructor(idProducto: number, idUsuario: number, unidadVenta: number) {
-        this.idProducto = idProducto;
+    constructor(idArticulo: number, idUsuario: number, unidadVenta: number) {
+        this.idArticulo = idArticulo;
         this.idUsuario = idUsuario;
         this.unidadVenta = unidadVenta;
     }

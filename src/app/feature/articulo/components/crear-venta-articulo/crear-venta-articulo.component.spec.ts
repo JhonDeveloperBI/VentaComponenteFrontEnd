@@ -1,22 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearVentaComponent } from './crear-venta.component';
+import { CrearVentaArticuloComponent } from './crear-venta-articulo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { VentaService } from '../../shared/service/venta.service';
+import { VentaService } from '@venta/shared/service/venta.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearVentaComponent', () => {
-  let component: CrearVentaComponent;
-  let fixture: ComponentFixture<CrearVentaComponent>;
+describe('CrearVentaArticuloComponent', () => {
+  let component: CrearVentaArticuloComponent;
+  let fixture: ComponentFixture<CrearVentaArticuloComponent>;
   let ventaService: VentaService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearVentaComponent ],
+      declarations: [ CrearVentaArticuloComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -30,7 +30,7 @@ describe('CrearVentaComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearVentaComponent);
+    fixture = TestBed.createComponent(CrearVentaArticuloComponent);
     component = fixture.componentInstance;
     ventaService = TestBed.inject(VentaService);
     spyOn(ventaService, 'guardar').and.returnValue(
