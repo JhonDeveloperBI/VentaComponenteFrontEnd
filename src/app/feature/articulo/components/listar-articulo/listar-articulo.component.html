@@ -13,7 +13,7 @@
         <td>{{articulo.nombreArticulo}}</td>
         <td>{{articulo.unidades}}</td>
         <td>{{articulo.precio}} </td>
-        <td><Button class="badge badge-danger mr-2" (click)='borrarArticulo( articulo )' > Borrar Artículo</Button></td>
+        <td><app-borrar-articulo [articulo]=articulo></app-borrar-articulo></td>
       </tr>
      </tbody>
   </table>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { UsuarioRoutingModule } from './usuario-routing.module';
-//import { BorrarUsuarioComponent } from './components/borrar-usuario/borrar-usuario.component';
+import { BorrarUsuarioComponent } from './components/borrar-usuario/borrar-usuario.component';
 import { ListarUsuarioComponent } from './components/listar-usuario/listar-usuario.component';
 import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
@@ -13,7 +13,7 @@ import { UsuarioService } from './shared/service/usuario.service';
   declarations: [
     CrearUsuarioComponent,
     ListarUsuarioComponent,
-  //  BorrarUsuarioComponent,
+    BorrarUsuarioComponent,
     UsuarioComponent
   ],
   imports: [

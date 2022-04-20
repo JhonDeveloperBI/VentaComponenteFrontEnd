@@ -29,7 +29,7 @@ describe('UsuarioService', () => {
 
   it('deberia listar usuarios', () => {
     const dummyUsuarios = [
-      new Usuario(1, '30', '50000'), new Usuario(2,'20','10000')
+      new Usuario(1, 'usuario1','123','2020-01-04 00:00:00'), new Usuario(2, 'usuario2','123ll','2020-01-04 00:00:00')
     ];
     service.consultar().subscribe(usuarios => {
       expect(usuarios.length).toBe(2);
@@ -41,7 +41,7 @@ describe('UsuarioService', () => {
   });
 
   it('deberia crear un usuario', () => {
-    const dummyUsuarios = new Usuario(1, '30', '50000');
+    const dummyUsuarios = new Usuario(1, 'usuario1','123aaa','2020-01-04 00:00:00');
     service.guardar(dummyUsuarios).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -51,7 +51,7 @@ describe('UsuarioService', () => {
   });
 
   it('deberia eliminar un usuario', () => {
-    const dummyUsuarios = new Usuario(1, '30', '50000');
+    const dummyUsuarios = new Usuario(1, 'usuario1','123','2020-01-05 00:00:00');
     service.eliminar(dummyUsuarios).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

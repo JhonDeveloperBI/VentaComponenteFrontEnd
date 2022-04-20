@@ -3,14 +3,14 @@
   <table class="table">
     <thead> <tr>
       <th scope="col">Nombre</th>
-      <th scope="col">FechaCreacion</th>
+      <th scope="col">FechaCreación</th>
       <th scope="col">Acciones</th>
     </tr></thead>
     <tbody>
-      <tr *ngFor="let item of listarUsuarios | async">
-        <td>{{item.nombre}}</td>
-        <td>{{item.fechaCreacion}}</td>
-        <td><Button class="badge badge-danger mr-2" (click)='borrarUsuario( item )' > Borrar Usuario</Button></td>
+      <tr *ngFor="let usuario of listarUsuarios | async">
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.fechaCreacion}}</td>
+        <td><app-borrar-usuario [usuario]=usuario></app-borrar-usuario></td>
       </tr>
      </tbody>
   </table>

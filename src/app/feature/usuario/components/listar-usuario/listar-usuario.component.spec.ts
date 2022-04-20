@@ -13,7 +13,7 @@ describe('ListarUsuarioComponent', () => {
   let component: ListarUsuarioComponent;
   let fixture: ComponentFixture<ListarUsuarioComponent>;
   let usuarioService: UsuarioService;
-  const listaUsuarios: Usuario[] = [new Usuario(1, 'usuario 1', 'testUsuario@gmail.com'), new Usuario(2, 'usuario 2', 'testUsuarioDos@gmail.com')];
+  const listaUsuarios: Usuario[] = [new Usuario(1, 'usuario 1', '123','2022-04-2017 00:00:00'), new Usuario(2, 'usuario 2', '2223ca','2020-02-09 00:00:00')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
