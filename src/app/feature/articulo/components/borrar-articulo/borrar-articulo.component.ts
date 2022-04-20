@@ -26,25 +26,38 @@ export class BorrarArticuloComponent implements OnInit {
   }
 
   borrarArticulo():void{
-    this.articuloService.eliminar(this.articulo).subscribe(
-      data => {if (data){
-        this.success();
-      }},
-      error => this.mostrarError(error.error.mensaje)
-    );
-    
-    setTimeout(() => {
-      window.location.reload()  
-    }, 3000);
-    
+    this.success();
+  
   }
 
   success(){
     this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha eliminado el artículo',
-      icon: 'success'
-    });
+      title: 'Esta seguro de eliminar este artículo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.articuloService.eliminar(this.articulo).subscribe(
+          data => {if (data){
+          }},
+          error => this.mostrarError(error.error.mensaje)
+        );
+      
+        this.notificacion.fire({
+          title: 'Éxito',
+          text: 'Se ha eliminado el artículo',
+          icon: 'success'
+        });
+
+        setTimeout(() => {
+          window.location.reload()  
+        }, 3000);   
+      }
+    })
   }
 
     mostrarError(mensaje){

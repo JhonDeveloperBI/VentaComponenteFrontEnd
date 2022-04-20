@@ -22,27 +22,41 @@ export class BorrarUsuarioComponent implements OnInit {
   ngOnInit() {
   }
 
-  borrarUsuario() {
-    this.usuarioServices.eliminar(this.usuario).subscribe(
-      data => {if (data){
-      }},
-      error => this.mostrarError(error.error.mensaje)
-    );
-
+  borrarUsuario() { 
     this.success();
-
-    setTimeout(() => {
-      window.location.reload()  
-    }, 3000);
+ 
   }
 
 
   success(){
     this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha eliminado el usuario',
-      icon: 'success'
-    });
+      title: 'Esta seguro de eliminar este usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.usuarioServices.eliminar(this.usuario).subscribe(
+          data => {if (data){
+          }},
+          error => this.mostrarError(error.error.mensaje)
+        );
+      
+        this.notificacion.fire({
+          title: 'Éxito',
+          text: 'Se ha eliminado el usuario',
+          icon: 'success'
+        });
+
+        setTimeout(() => {
+          window.location.reload()  
+        }, 3000);
+        
+      }
+    })
   }
 
     mostrarError(mensaje){
