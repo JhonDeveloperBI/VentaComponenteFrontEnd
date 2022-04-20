@@ -4,7 +4,7 @@
       <form class="card-body" [formGroup]="ventaForm" (ngSubmit)="crear()">
         <h3 class="card-title">Crear venta de un componente electrónico</h3>
         <label for="idArticulo">IdArticulo</label>
-        <input type="text" name="idArticulo" #newtitle class="form-control"  formControlName="idArticulo" autofocus>
+        <input type="hidden" name="idArticulo" #newtitle class="form-control"  formControlName="idArticulo" autofocus>
 
         <label for="idUsuario">IdUsuario</label>
         <input type="text" name="idUsuario" #newlink class="form-control"  formControlName="idUsuario">

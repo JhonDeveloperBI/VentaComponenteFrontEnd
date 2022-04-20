@@ -6,7 +6,7 @@ import { BorrarArticuloComponent } from './borrar-articulo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '@core/services/http.service';
-import { ArticuloService } from '@producto/shared/service/articulo.service';
+import { ArticuloService } from '@articulo/shared/service/articulo.service';
 
 describe('BorrarArticuloComponent', () => {
   let component: BorrarArticuloComponent;

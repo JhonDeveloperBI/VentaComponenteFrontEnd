@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Articulo } from 'src/app/feature/articulo/shared/model/articulo';
+
 import { VentaService } from '../../shared/service/venta.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import Swal from 'sweetalert2';
 
 
@@ -9,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './crear-venta.component.html'
 })
 export class CrearVentaComponent implements OnInit {
+  
   ventaForm: FormGroup;
   constructor(protected ventaServices: VentaService) { }
 
@@ -17,11 +21,16 @@ export class CrearVentaComponent implements OnInit {
     position: 'center'
   });
 
+ // @Input()
+  articuloVenta:Articulo;
+
   ngOnInit() {
+  //  this.ventaForm.controls['idArticulo'].setValue(this.articuloVenta.idArticulo);
     this.construirFormularioVenta();
   }
 
   crear() {
+  
     this.ventaServices.guardar(this.ventaForm.value).subscribe(
       data => {if (data){
         this.success();
@@ -33,7 +42,6 @@ export class CrearVentaComponent implements OnInit {
 
   private construirFormularioVenta() {
     this.ventaForm = new FormGroup({
-      idArticulo: new FormControl('', [Validators.required]),
       idUsuario: new FormControl('', [Validators.required]),
       unidadVenta: new FormControl('', [Validators.required])
                                                             });
