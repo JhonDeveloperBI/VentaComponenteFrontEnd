@@ -9,6 +9,9 @@ import { UsuarioModule } from '@usuario/usuario.module';
 import { VentaModule } from '@venta/venta.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
+import { TrmComponent } from './feature/trm/components/trm.component';
+import { TrmService } from './feature/trm/service/trm.service';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -16,7 +19,8 @@ import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TrmComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
     VentaModule,
     CoreModule
   ],
-  providers: [CookieService],
+  providers: [TrmService, CookieService, DatePipe],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -13,7 +13,7 @@ describe('ListarArticuloComponent', () => {
   let component: ListarArticuloComponent;
   let fixture: ComponentFixture<ListarArticuloComponent>;
   let articuloService: ArticuloService;
-  const listaArticulos: Articulo[] = [new Articulo('1', 'Producto 1'), new Articulo('2', 'Producto 2')];
+  const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1',2,1000), new Articulo(2, 'Producto 2',10,1000)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
