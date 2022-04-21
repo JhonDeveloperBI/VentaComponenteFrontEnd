@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '@core/services/http.service';
 import { ArticuloService } from '@articulo/shared/service/articulo.service';
+import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BorrarArticuloComponent', () => {
   let component: BorrarArticuloComponent;
@@ -20,6 +21,7 @@ describe('BorrarArticuloComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [ArticuloService, HttpService]
     })
     .compileComponents();

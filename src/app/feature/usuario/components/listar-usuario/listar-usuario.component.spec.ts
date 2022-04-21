@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { Usuario } from '../../shared/model/usuario';
 import { HttpService } from 'src/app/core/services/http.service';
+import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListarUsuarioComponent', () => {
   let component: ListarUsuarioComponent;
@@ -23,6 +24,7 @@ describe('ListarUsuarioComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [UsuarioService, HttpService]
     })
       .compileComponents();

@@ -24,8 +24,6 @@ describe('workspace-project Producto', () => {
         producto.ingresarId(ID_PRODUCTO);
         producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
 
-        // Adicionamos las validaciones despues de la creación
-        // expect(<>).toEqual(<>);
     });
 
     it('Deberia listar articulos', () => {

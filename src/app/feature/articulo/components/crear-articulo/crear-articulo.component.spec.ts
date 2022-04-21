@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ArticuloService } from '../../shared/service/articulo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CrearArticuloComponent', () => {
   let component: CrearArticuloComponent;
@@ -24,6 +25,7 @@ describe('CrearArticuloComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [ArticuloService, HttpService],
     })
     .compileComponents();

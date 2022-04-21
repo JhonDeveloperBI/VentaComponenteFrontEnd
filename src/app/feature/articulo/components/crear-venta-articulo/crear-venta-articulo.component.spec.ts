@@ -8,6 +8,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { VentaService } from '@venta/shared/service/venta.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UsuarioService } from '@usuario/shared/service/usuario.service';
+import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CrearVentaArticuloComponent', () => {
   let component: CrearVentaArticuloComponent;
@@ -24,7 +26,8 @@ describe('CrearVentaArticuloComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [VentaService, HttpService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+      providers: [VentaService,UsuarioService, HttpService],
     })
     .compileComponents();
   }));
@@ -43,20 +46,16 @@ describe('CrearVentaArticuloComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('formulario es invalido cuando esta vacio', () => {
-    expect(component.ventaForm.valid).toBeFalsy();
-  });
 
   it('Registrando venta', () => {
     expect(component.ventaForm.valid).toBeFalsy();
     component.ventaForm.controls.idArticulo.setValue(1);
     component.ventaForm.controls.idUsuario.setValue(1);
+    component.ventaForm.controls.nombreUsuario.setValue("usuario nombre");
     component.ventaForm.controls.unidadVenta.setValue(3);
     expect(component.ventaForm.valid).toBeTruthy();
 
     component.crear();
 
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
   });
 });

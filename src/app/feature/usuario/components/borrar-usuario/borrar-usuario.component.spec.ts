@@ -8,6 +8,7 @@ import { BorrarUsuarioComponent } from './borrar-usuario.component';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
@@ -23,6 +24,7 @@ describe('BorrarUsuarioComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [UsuarioService, HttpService],
     })
     .compileComponents();
