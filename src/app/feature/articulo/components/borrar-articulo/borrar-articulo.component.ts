@@ -1,6 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { ArticuloService } from 'src/app/feature/articulo/shared/service/articulo.service';
 import { Articulo } from 'src/app/feature/articulo/shared/model/articulo';
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 
@@ -20,7 +21,7 @@ export class BorrarArticuloComponent implements OnInit {
   });
 
 
-  constructor( protected articuloService: ArticuloService) { }
+  constructor( protected articuloService: ArticuloService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -53,9 +54,7 @@ export class BorrarArticuloComponent implements OnInit {
           icon: 'success'
         });
 
-        setTimeout(() => {
-          window.location.reload()  
-        }, 3000);   
+        this.router.navigateByUrl('/articulo');   
       }
     })
   }

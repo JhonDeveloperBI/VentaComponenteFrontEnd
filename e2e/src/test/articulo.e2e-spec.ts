@@ -1,36 +1,100 @@
-import { browser, logging } from 'protractor';
 import { NavbarPage } from '../page/navbar/navbar.po';
 import { AppPage } from '../app.po';
 import { ArticuloPage } from '../page/articulo/articulo.po';
 
-describe('workspace-project Producto', () => {
+describe('workspace-project Articulo', () => {
     let page: AppPage;
     let navBar: NavbarPage;
-    let producto: ArticuloPage;
+    let articulo: ArticuloPage;
 
     beforeEach(() => {
         page = new AppPage();
         navBar = new NavbarPage();
-        producto = new ArticuloPage();
+        articulo = new ArticuloPage();
     });
 
     it('Deberia crear articulo', () => {
-        const ID_PRODUCTO = '001';
-        const DESCRIPCION_PRODUCTO = 'articulo de pruebas';
+        const DESCRIPCION_ARTICULO = 'articulo de pruebas';
+        const UNIDADES_ARTICULO = 10;
+        const PRECIO_ARTICULO = 1000;
 
         page.navigateTo();
         navBar.clickBotonArticulo();
-        producto.clickBotonCrearArticulos();
-        producto.ingresarId(ID_PRODUCTO);
-        producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
+        navBar.clickBotonCrearArticulo();
+        articulo.ingresarNombreArticulo(DESCRIPCION_ARTICULO);
+        articulo.ingresarUnidadesArticulo(UNIDADES_ARTICULO);
+        articulo.ingresarPrecioArticulo(PRECIO_ARTICULO);
+        articulo.clickBotonGuardarArticulo();
+       
+        expect(articulo.mostroNotificacionInformativa()).toBe(true);
 
     });
+
+
+
+    
+    it('Deberia lanzar un error al ingresar un articulo ya registrado', () => {
+        const DESCRIPCION_ARTICULO = 'articulo de pruebas';
+        const UNIDADES_ARTICULO = 10;
+        const PRECIO_ARTICULO = 1000;
+
+        page.navigateTo();
+        navBar.clickBotonArticulo();
+        navBar.clickBotonCrearArticulo();
+        articulo.ingresarNombreArticulo(DESCRIPCION_ARTICULO);
+        articulo.ingresarUnidadesArticulo(UNIDADES_ARTICULO);
+        articulo.ingresarPrecioArticulo(PRECIO_ARTICULO);
+        articulo.clickBotonGuardarArticulo();
+       
+        expect(articulo.mostroNotificacionError()).toBe(true);
+
+    });
+
 
     it('Deberia listar articulos', () => {
         page.navigateTo();
         navBar.clickBotonArticulo();
-        producto.clickBotonListarArticulos();
+        articulo.clickBotonListarArticulos();
 
-        expect(4).toBe(producto.contarArticulos());
+        expect(articulo.contarArticulos()).toBeGreaterThan(0);
     });
+
+    it('Deberia actualizar un articulo',() => {
+
+        const DESCRIPCION_ARTICULO = 'articuloactualizado';
+        const UNIDADES_ARTICULO = 10;
+        const PRECIO_ARTICULO = 1000;
+
+        page.navigateTo();
+        navBar.clickBotonArticulo();
+        articulo.clickBotonListarArticulos();
+        articulo.clickBotonActualizar();
+        articulo.limpiarInputNombreArticulo();
+        articulo.limpiarInputUnidadesArticulo();
+        articulo.limpiarInputPrecioArticulo();
+        
+        articulo.ingresarNombreArticulo(DESCRIPCION_ARTICULO);
+        articulo.ingresarUnidadesArticulo(UNIDADES_ARTICULO);
+        articulo.ingresarPrecioArticulo(PRECIO_ARTICULO);
+        articulo.clickBotonActualizarArticulo();
+       
+        expect(articulo.mostroNotificacionInformativa()).toBe(true);
+    });
+
+    it('Deberia borrrar el articulo', () => {
+        page.navigateTo();
+        navBar.clickBotonArticulo();
+        articulo.clickBotonListarArticulos();
+
+        articulo.clickBotonBorrar();
+        articulo.clickBotonConfirmacion();
+
+        expect(articulo.mostroNotificacionInformativa()).toBe(true);
+
+    });
+
+
+    
+
 });
+

@@ -52,10 +52,11 @@ describe('CrearUsuarioComponent', () => {
     component.usuarioForm.controls.nombre.setValue('usuario 1');
     component.usuarioForm.controls.clave.setValue('123_passwor');
     expect(component.usuarioForm.valid).toBeTruthy();
+    expect(component.usuarioForm).not.toBeNull();
 
     component.crear();
-
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
+    
   });
+
+  
 });

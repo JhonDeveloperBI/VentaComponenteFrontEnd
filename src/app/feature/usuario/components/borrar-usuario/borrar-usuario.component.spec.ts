@@ -9,6 +9,7 @@ import { UsuarioService } from '../../shared/service/usuario.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import { Usuario } from '@usuario/shared/model/usuario';
 
 describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
@@ -33,6 +34,7 @@ describe('BorrarUsuarioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BorrarUsuarioComponent);
     component = fixture.componentInstance;
+    component.usuario = new Usuario(1,"usuario test","2022-04-22 00:00:00","123_pass")
     fixture.detectChanges();
   });
 

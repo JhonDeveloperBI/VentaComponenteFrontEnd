@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { VentaService } from '../../shared/service/venta.service';
 import { Venta } from '../../shared/model/venta';
 import { HttpService } from 'src/app/core/services/http.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('ListarVentaComponent', () => {
   let component: ListarVentaComponent;
@@ -21,7 +22,9 @@ describe('ListarVentaComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       providers: [VentaService, HttpService]
     })

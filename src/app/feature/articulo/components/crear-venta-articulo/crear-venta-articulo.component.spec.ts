@@ -10,11 +10,14 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import { Usuario } from '@usuario/shared/model/usuario';
 
 describe('CrearVentaArticuloComponent', () => {
   let component: CrearVentaArticuloComponent;
   let fixture: ComponentFixture<CrearVentaArticuloComponent>;
   let ventaService: VentaService;
+  let usuarioService: UsuarioService;
+  let usuarios : any [];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -39,6 +42,14 @@ describe('CrearVentaArticuloComponent', () => {
     spyOn(ventaService, 'guardar').and.returnValue(
       of(true)
     );
+
+    usuarios=[new Usuario(1,"test","2022-01-02 00:00:00","1234_pass")];
+    usuarioService = TestBed.inject(UsuarioService);
+    spyOn(usuarioService, 'consultar').and.returnValue(
+     of( usuarios )
+    );
+    
+    
     fixture.detectChanges();
   });
 

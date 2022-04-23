@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '@core/services/http.service';
 import { ArticuloService } from '@articulo/shared/service/articulo.service';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import { Articulo } from '@articulo/shared/model/articulo';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('BorrarArticuloComponent', () => {
   let component: BorrarArticuloComponent;
@@ -19,7 +21,9 @@ describe('BorrarArticuloComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [ArticuloService, HttpService]
@@ -30,6 +34,7 @@ describe('BorrarArticuloComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BorrarArticuloComponent);
     component = fixture.componentInstance;
+    component.articulo = new Articulo(1," articulo test",10,1000);
     fixture.detectChanges();
   });
 

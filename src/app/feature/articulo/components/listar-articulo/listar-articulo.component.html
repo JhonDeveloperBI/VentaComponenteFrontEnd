@@ -13,8 +13,11 @@
         <td>{{articulo.nombreArticulo}}</td>
         <td>{{articulo.unidades}}</td>
         <td>{{articulo.precio}} </td>
-        <td> <app-borrar-articulo [articulo]=articulo> </app-borrar-articulo> </td>
-        <td><button class="btn btn-primary" routerLink="/crearventa/{{articulo.idArticulo}}">Crear venta</button></td>
+        <td> 
+          <app-borrar-articulo [articulo]=articulo> </app-borrar-articulo>
+          <button class="btn btn-success mr-1" routerLink="/actualizararticulo/{{articulo.idArticulo}}">Actualizar</button>
+          <button class="btn btn-primary mr-0" routerLink="/crearventa/{{articulo.idArticulo}}">Crear venta</button>
+        </td>
       </tr>
      </tbody>
   </table>

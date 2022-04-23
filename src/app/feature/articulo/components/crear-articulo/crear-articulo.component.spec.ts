@@ -57,7 +57,6 @@ describe('CrearArticuloComponent', () => {
     
     expect(component.articuloForm.valid).toBeTruthy();
 
-    component.crear();
 
   });
 });

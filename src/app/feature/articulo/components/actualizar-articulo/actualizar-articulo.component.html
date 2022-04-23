@@ -1,0 +1,40 @@
+
+<form [formGroup]="articuloForm" (ngSubmit)="actualizarArticulo()">
+    <h1 class="text-center">Actualizar artículo electrónico</h1>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <label>Nombre:</label>
+      </div>
+      <div class="col-sm-4">
+        <input validar type="text" id="nombreArticulo" name="nombreArticulo" placeholder="Nombre artículo"
+          class="form-control" formControlName="nombreArticulo">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-sm-2">
+        <label>Unidades:</label>
+      </div>
+      <div class="col-sm-4">
+        <input validar type="text" id="unidades" name="unidades" placeholder="Unidades artículo"
+          class="form-control" formControlName="unidades">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-sm-2">
+        <label>Precio:</label>
+      </div>
+      <div class="col-sm-4">
+        <input validar type="text" id="precio" name="precio" placeholder="Precio artículo"
+          class="form-control" formControlName="precio">
+      </div>
+    </div>
+  
+    <button id="actualizar" class="btn btn-primary btn-block mt-4">
+      Actualizar Artículo
+    </button>
+  
+  </form>
+  

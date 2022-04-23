@@ -5,6 +5,7 @@ import { ListarArticuloComponent } from './components/listar-articulo/listar-art
 import { BorrarArticuloComponent } from './components/borrar-articulo/borrar-articulo.component';
 import { CrearVentaArticuloComponent } from './components/crear-venta-articulo/crear-venta-articulo.component';
 import { ArticuloComponent } from './components/articulo/articulo.component';
+import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'listar',
         component: ListarArticuloComponent
+      },
+      {
+        path: 'actualizararticulo/:id',
+        component: ActualizarArticuloComponent
       },
       {
         path: 'borrar',

@@ -14,8 +14,6 @@ import { TrmService } from './feature/trm/service/trm.service';
 import { DatePipe } from '@angular/common';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

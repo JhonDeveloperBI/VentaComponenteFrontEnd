@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { Usuario } from '@usuario/shared/model/usuario';
 import Swal from 'sweetalert2';
@@ -17,14 +18,13 @@ export class BorrarUsuarioComponent implements OnInit {
   @Input()
   usuario:Usuario;
 
-  constructor(protected usuarioServices: UsuarioService) { }
+  constructor(protected usuarioServices: UsuarioService, private router: Router) { }
 
   ngOnInit() {
   }
 
   borrarUsuario() { 
     this.success();
- 
   }
 
 
@@ -44,6 +44,8 @@ export class BorrarUsuarioComponent implements OnInit {
           }},
           error => this.mostrarError(error.error.mensaje)
         );
+
+        this.router.navigateByUrl('/usuario');
       
         this.notificacion.fire({
           title: 'Éxito',
@@ -51,12 +53,12 @@ export class BorrarUsuarioComponent implements OnInit {
           icon: 'success'
         });
 
-        setTimeout(() => {
-          window.location.reload()  
-        }, 3000);
+        
         
       }
     })
+
+  
   }
 
     mostrarError(mensaje){
