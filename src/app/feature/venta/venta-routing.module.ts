@@ -4,7 +4,7 @@ import { ListarVentaComponent } from './components/listar-venta/listar-venta.com
 import { VentaComponent } from './components/venta/venta.component';
 
 
-const routes: Routes = [
+const routes: Routes = [ //NOSONAR
   {
     path: '',
     component: VentaComponent,

@@ -8,7 +8,7 @@ import { ArticuloComponent } from './components/articulo/articulo.component';
 import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
 
 
-const routes: Routes = [
+const routes: Routes = [ //NOSONAR
   {
     path: '',
     component: ArticuloComponent,

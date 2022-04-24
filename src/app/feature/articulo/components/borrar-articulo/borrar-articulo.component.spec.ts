@@ -52,4 +52,14 @@ describe('BorrarArticuloComponent', () => {
     });
   });
 
+  it('Debe mostrar mensaje de exito ', (done) => {
+    component.mostrarMensaje("se ha eliminado el articulo");
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Éxito');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+  
+
 });

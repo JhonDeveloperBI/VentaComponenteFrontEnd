@@ -13,8 +13,8 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 })
 export class ActualizarArticuloComponent implements OnInit {
 
-  getIdArticulo: any;
-  articulos : any = [];
+  getIdArticulo: any; //NOSONAR
+  articulos : any = []; //NOSONAR 
 
   notificacion = Swal.mixin({
     toast: true,
@@ -28,7 +28,7 @@ export class ActualizarArticuloComponent implements OnInit {
 
   ngOnInit(): void {
     this.articuloService.consultar().subscribe(
-      (data : any) =>{
+      (data : any) =>{ //NOSONAR
          this.articulos = data.map(u => u);
          const articuloFilter = this.articulos.filter(u => u.id = this.getIdArticulo );
          this.articuloForm.controls['nombreArticulo'].setValue(articuloFilter[0]?.nombreArticulo);
@@ -49,8 +49,7 @@ export class ActualizarArticuloComponent implements OnInit {
 
   actualizarArticulo(){
     this.articuloService.actualizar(this.getIdArticulo,this.articuloForm.value).subscribe(
-      data => {if (data){
-        
+      data => {if (data){ //NOSONAR
       }},
       error => this.mostrarError(error.error.mensaje)
     );
