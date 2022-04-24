@@ -6,12 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ArticuloService } from '@articulo/shared/service/articulo.service';
 import { HttpService } from '@core/services/http.service';
+import Swal from 'sweetalert2';
 
 import { ActualizarArticuloComponent } from './actualizar-articulo.component';
 
 describe('ActualizarArticuloComponent', () => {
   let component: ActualizarArticuloComponent;
   let fixture: ComponentFixture<ActualizarArticuloComponent>;
+
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,4 +43,14 @@ describe('ActualizarArticuloComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Debe mostrar mensaje de error ', (done) => {
+    component.mostrarError("error");
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Error');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
 });

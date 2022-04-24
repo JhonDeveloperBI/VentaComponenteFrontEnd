@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
+import Swal from 'sweetalert2';
 
 describe('CrearVentaArticuloComponent', () => {
   let component: CrearVentaArticuloComponent;
@@ -71,5 +72,14 @@ describe('CrearVentaArticuloComponent', () => {
 
     component.crear();
 
+  });
+
+  it('Debe mostrar mensaje de error ', (done) => {
+    component.mostrarError("error");
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Error');
+      Swal.clickConfirm();
+      done();
+    });
   });
 });
