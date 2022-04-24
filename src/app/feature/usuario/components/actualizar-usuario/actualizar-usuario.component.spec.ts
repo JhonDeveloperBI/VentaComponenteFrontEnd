@@ -8,6 +8,7 @@ import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
+import { ListarUsuarioComponent } from '../listar-usuario/listar-usuario.component';
 
 import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
 
@@ -26,7 +27,9 @@ describe('ActualizarUsuarioComponent', () => {
         imports: [
           CommonModule,
           HttpClientModule,
-          RouterTestingModule,
+          RouterTestingModule.withRoutes(
+            [{path: 'usuario/listar', component: ListarUsuarioComponent}]
+          ),
           ReactiveFormsModule,
           FormsModule
         ],

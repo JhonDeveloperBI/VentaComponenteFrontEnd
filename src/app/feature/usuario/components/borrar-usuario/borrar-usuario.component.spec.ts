@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
 import Swal from 'sweetalert2';
+import { UsuarioComponent } from '../usuario/usuario.component';
 
 describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
@@ -25,7 +26,9 @@ describe('BorrarUsuarioComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(
+          [{path: 'usuario', component: UsuarioComponent}]
+        ),
         ReactiveFormsModule,
         FormsModule
       ],
