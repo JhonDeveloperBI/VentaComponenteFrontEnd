@@ -8,12 +8,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ArticuloService } from '../../shared/service/articulo.service';
 import { Articulo } from '../../shared/model/articulo';
 import { HttpService } from 'src/app/core/services/http.service';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListarArticuloComponent', () => {
   let component: ListarArticuloComponent;
   let fixture: ComponentFixture<ListarArticuloComponent>;
   let articuloService: ArticuloService;
   const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1',2,1000), new Articulo(2, 'Producto 2',10,1000)];
+
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -23,6 +27,7 @@ describe('ListarArticuloComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
       providers: [ArticuloService, HttpService]
     })
       .compileComponents();
