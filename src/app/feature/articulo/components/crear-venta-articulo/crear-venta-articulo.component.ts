@@ -14,11 +14,11 @@ import Swal from 'sweetalert2';
   templateUrl: './crear-venta-articulo.component.html'
 })
 export class CrearVentaArticuloComponent implements OnInit {
-  getIdArticulo: any;
+  getIdArticulo: number;
 
   ventaForm: FormGroup;
   constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute, protected usuarioService: UsuarioService, private router: Router) {
-    this.getIdArticulo = this.activeRouter.snapshot.paramMap.get('id');  
+    this.getIdArticulo =Number( this.activeRouter.snapshot.paramMap.get('id'));  
    }
 
   notificacion = Swal.mixin({

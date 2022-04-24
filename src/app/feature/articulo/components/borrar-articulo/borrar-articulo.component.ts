@@ -51,7 +51,8 @@ export class BorrarArticuloComponent implements OnInit {
 
         this.router.navigateByUrl('/articulo');   
       }
-    })
+    });
+    
   }
 
    mostrarMensaje(mensaje){
