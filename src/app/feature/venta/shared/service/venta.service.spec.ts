@@ -29,7 +29,7 @@ describe('VentaService', () => {
 
   it('deberia listar Ventas', () => {
     const dummyVentas = [
-      new Venta(1, 1, 50000), new Venta(2, 20, 10000)
+      new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01"), new Venta(1, 1, 200,10,2000,"sin descuento","2022-02-01")
     ];
     service.consultar().subscribe(ventas => {
       expect(ventas.length).toBe(2);
@@ -41,7 +41,7 @@ describe('VentaService', () => {
   });
 
   it('deberia crear un venta', () => {
-    const dummyVenta = new Venta(1, 30, 50000);
+    const dummyVenta = new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01");
     service.guardar(dummyVenta).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

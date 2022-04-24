@@ -7,8 +7,9 @@ export class UsuarioPage {
     private inputClave = element(by.name('clave'));
     private listaUsuarios = element.all(by.className('btn '));
     private botonBorrar = element(by.xpath('//*[@id="123_pass"]'))
+    private botonGuardarArticulo =  element(by.id('guardar'));
     private botonConfirmacion = element(by.xpath('/html/body/div/div/div[7]/button[1]'))
-    private botonActualizar = element(by.xpath('/html/body/app-root/app-usuario/app-listar-usuario/div/table/tbody/tr/td[3]/button'))
+    private botonActualizar = element(by.className('123_pass'))
     private botonActualizarUsuario = element(by.xpath('//*[@id="actualizar"]'));
 
     async mostroNotificacionInformativa(): Promise<Boolean> {
@@ -64,7 +65,7 @@ export class UsuarioPage {
     }
 
     async clickBotonGuardar() {
-        await element(by.id('guardar')).click();
+        await this.botonGuardarArticulo.click();
     }
 
     

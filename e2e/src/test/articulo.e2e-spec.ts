@@ -13,7 +13,7 @@ describe('workspace-project Articulo', () => {
         articulo = new ArticuloPage();
     });
 
-    it('Deberia crear articulo', () => {
+    it('Deberia crear un artículo', () => {
         const DESCRIPCION_ARTICULO = 'articulo de pruebas';
         const UNIDADES_ARTICULO = 10;
         const PRECIO_ARTICULO = 1000;
@@ -33,7 +33,7 @@ describe('workspace-project Articulo', () => {
 
 
     
-    it('Deberia lanzar un error al ingresar un articulo ya registrado', () => {
+    it('Deberia lanzar un error al ingresar un artículo ya registrado', () => {
         const DESCRIPCION_ARTICULO = 'articulo de pruebas';
         const UNIDADES_ARTICULO = 10;
         const PRECIO_ARTICULO = 1000;
@@ -51,7 +51,7 @@ describe('workspace-project Articulo', () => {
     });
 
 
-    it('Deberia listar articulos', () => {
+    it('Deberia listar artículos', () => {
         page.navigateTo();
         navBar.clickBotonArticulo();
         articulo.clickBotonListarArticulos();
@@ -59,7 +59,7 @@ describe('workspace-project Articulo', () => {
         expect(articulo.contarArticulos()).toBeGreaterThan(0);
     });
 
-    it('Deberia actualizar un articulo',() => {
+    it('Deberia actualizar un artículo',() => {
 
         const DESCRIPCION_ARTICULO = 'articuloactualizado';
         const UNIDADES_ARTICULO = 10;
@@ -81,7 +81,23 @@ describe('workspace-project Articulo', () => {
         expect(articulo.mostroNotificacionInformativa()).toBe(true);
     });
 
-    it('Deberia borrrar el articulo', () => {
+    it('Deberia crear una venta de un artículo',() =>{
+
+        page.navigateTo();
+        navBar.clickBotonArticulo();
+        articulo.clickBotonListarArticulos();
+
+        articulo.clickBotonCrearVenta();
+        articulo.ingresarUnidadVenta(1);
+
+        articulo.clickBotonGuardarVenta();
+
+        expect(articulo.mostroNotificacionInformativa()).toBe(true);     
+    
+
+    });
+
+    it('Deberia borrrar el artículo', () => {
         page.navigateTo();
         navBar.clickBotonArticulo();
         articulo.clickBotonListarArticulos();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { VentaService } from '@venta/shared/service/venta.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
@@ -17,7 +17,7 @@ export class CrearVentaArticuloComponent implements OnInit {
   getIdArticulo: any;
 
   ventaForm: FormGroup;
-  constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute, protected usuarioService: UsuarioService) {
+  constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute, protected usuarioService: UsuarioService, private router: Router) {
     this.getIdArticulo = this.activeRouter.snapshot.paramMap.get('id');  
    }
 
@@ -34,8 +34,7 @@ export class CrearVentaArticuloComponent implements OnInit {
     this.usuarioService.consultar().subscribe(
       res =>{
         this.ventaForm.controls['idUsuario'].setValue(res[0]?.id);
-        this.ventaForm.controls['nombreUsuario'].setValue(res[0]?.nombre);
-        
+        this.ventaForm.controls['nombreUsuario'].setValue(res[0]?.nombre);   
       }
     );     
   }
@@ -46,6 +45,7 @@ export class CrearVentaArticuloComponent implements OnInit {
       data => {if (data){
         this.success();
         this.ventaForm.reset();
+        this.router.navigateByUrl('/');
       }},
       error => this.mostrarError(error.error.mensaje)
     );

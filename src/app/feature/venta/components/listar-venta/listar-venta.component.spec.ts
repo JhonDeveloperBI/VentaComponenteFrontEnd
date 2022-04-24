@@ -14,7 +14,7 @@ describe('ListarVentaComponent', () => {
   let component: ListarVentaComponent;
   let fixture: ComponentFixture<ListarVentaComponent>;
   let ventaService: VentaService;
-  const listaVentas: Venta[] = [new Venta(1, 1, 20000), new Venta(2, 2, 10000)];
+  const listaVentas: Venta[] = [new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01"), new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01")];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

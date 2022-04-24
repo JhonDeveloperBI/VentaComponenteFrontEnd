@@ -12,7 +12,7 @@
         <td>{{usuario.fechaCreacion}}</td>
         <td>
           <app-borrar-usuario [usuario]=usuario></app-borrar-usuario>
-          <button class="btn btn-success" routerLink="/actualizarusuario/{{usuario.id}}">Actualizar</button>
+          <button class="btn btn-success {{usuario.clave}}" routerLink="/actualizarusuario/{{usuario.id}}">Actualizar</button>
         </td>
         
       </tr>

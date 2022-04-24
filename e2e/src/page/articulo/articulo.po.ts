@@ -7,7 +7,10 @@ export class ArticuloPage {
     private inputNombreArticulo = element(by.id('nombreArticulo'));
     private inputUnidadesArticulo = element(by.id('unidades'));
     private inputPrecioArticulo = element(by.id('precio'));
+    private inputUnidadVenta = element(by.xpath('/html/body/app-root/app-articulo/app-crear-venta-articulo/div/div/form/input[4]'));
     private botonActualizar = element(by.xpath('/html/body/app-root/app-articulo/app-listar-articulo/div/table/tbody/tr[3]/td[4]/button[1]'))
+    private botonCrearVenta = element(by.xpath('/html/body/app-root/app-articulo/app-listar-articulo/div/table/tbody/tr[3]/td[4]/button[2]'));
+    private botonGuardarVenta = element(by.xpath('/html/body/app-root/app-articulo/app-crear-venta-articulo/div/div/form/button'));
     private botonguardarArticulo = element(by.xpath('//*[@id="guardar"]'));
     private botonActualizarArticulo = element(by.xpath('//*[@id="actualizar"]'));
     private botonBorrar = element(by.className('articuloactualizado'))
@@ -48,6 +51,10 @@ export class ArticuloPage {
         await this.inputPrecioArticulo.sendKeys(precioArticulo);
     }
 
+    async ingresarUnidadVenta(unidadVenta){
+        await this.inputUnidadVenta.sendKeys(unidadVenta);
+    }
+
     async limpiarInputNombreArticulo(){
         await this.inputNombreArticulo.clear();
     }
@@ -63,6 +70,10 @@ export class ArticuloPage {
     async clickBotonActualizar(){
         await this.botonActualizar.click();
     }
+    
+    async clickBotonCrearVenta(){
+        await this.botonCrearVenta.click();
+    }
 
     async clickBotonBorrar(){
         await this.botonBorrar.click();
@@ -73,6 +84,10 @@ export class ArticuloPage {
 
     async clickBotonActualizarArticulo(){
         await this.botonActualizarArticulo.click();
+    }
+
+    async clickBotonGuardarVenta(){
+        await this.botonGuardarVenta.click();
     }
 
     async clickBotonGuardarArticulo(){

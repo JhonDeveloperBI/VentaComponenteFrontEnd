@@ -2,19 +2,19 @@
 <div id="ventas" >
   <table class="table"> 
     <thead> <tr>
-      <th scope="col">IdArticulo</th>
-      <th scope="col">IdUsuario</th>
       <th scope="col">CantidadVenta</th>
       <th scope="col">PrecioUnidad</th>
       <th scope="col">DetalleDescuento</th>
+      <th scope="col">TotalVenta</th>
+      <th scope="col">FechaVenta</th>
     </tr></thead>
     <tbody>
       <tr *ngFor="let venta of listaVentas | async">
-        <td>{{venta.idArticulo}}</td>
-        <td>{{venta.idUsuario}}</td>
         <td>{{venta.unidadVenta}} </td>
         <td>{{venta.precioUnidad}}</td>
         <td>{{venta.detalleVentaArticulo}}</td>
+        <td>{{venta.totalVenta}}</td>
+        <td>{{venta.fechaVentaArticulo}}</td>
       </tr>
      </tbody>
   </table>
