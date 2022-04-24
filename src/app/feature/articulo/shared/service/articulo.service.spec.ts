@@ -50,6 +50,17 @@ describe('ArticuloService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
+  it('deberia actualizar un articulo', () => {
+    const dummyArticulo = new Articulo(1, 'articulo actualizado',10,1000);
+    service.actualizar(1,dummyArticulo).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${apiEndpointArticulos}/1`);
+    expect(req.request.method).toBe('PUT');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
+  
+
   it('deberia eliminar un articulo', () => {
     const dummyArticulo = new Articulo(1, 'Producto 1',100,2000);
     service.eliminar(dummyArticulo).subscribe((respuesta) => {
