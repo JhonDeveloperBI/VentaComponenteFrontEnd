@@ -1,0 +1,23 @@
+<!-- NAVIGATION -->
+<div class="container p-4">
+    <div class="row">
+      <!-- FORM -->
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <form class="card-body" [formGroup]="usuarioForm" (ngSubmit)="actualizar()">
+            <h3 class="card-title">Actualizar  usuario</h3>
+            <input type="hidden" name="id" #newtitle class="form-control"  formControlName="id" autofocus>
+            <label for="nombre">Nombre Usuario</label>
+            <input type="text" name="nombre"  #newtitle class="form-control"  formControlName="nombre" autofocus>
+  
+            <label for="clave">Clave</label>
+            <input type="password" name="clave"   #newlink class="form-control"  formControlName="clave">
+
+            <button id="actualizar"  class="btn btn-primary btn-block mt-4">
+              Actualizar Usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

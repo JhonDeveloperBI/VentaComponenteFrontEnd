@@ -1,0 +1,22 @@
+<!-- NAVIGATION -->
+<div class="container p-4">
+    <div class="row">
+      <!-- FORM -->
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <form class="card-body" [formGroup]="usuarioForm" (ngSubmit)="crear()">
+            <h3 class="card-title">Adicionar un usuario</h3>
+            <label for="nombre">Usuario</label>
+            <input type="text" name="nombre" #newtitle class="form-control"  formControlName="nombre" autofocus>
+  
+            <label for="clave">Clave</label>
+            <input type="password" name="clave" #newlink class="form-control"  formControlName="clave">
+
+            <button id="guardar"  class="btn btn-primary btn-block mt-4">
+              Guardar Usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

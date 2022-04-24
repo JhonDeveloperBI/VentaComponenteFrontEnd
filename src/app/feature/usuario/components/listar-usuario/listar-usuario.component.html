@@ -1,0 +1,21 @@
+<br>
+<div id="Usuarios">
+  <table class="table">
+    <thead> <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">FechaCreación</th>
+      <th scope="col">Acciones</th>
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let usuario of listarUsuarios | async">
+        <td ng-bind="nombre"> {{usuario.nombre}}</td>
+        <td>{{usuario.fechaCreacion}}</td>
+        <td>
+          <app-borrar-usuario [usuario]=usuario></app-borrar-usuario>
+          <button class="btn btn-success {{usuario.clave}}" routerLink="/actualizarusuario/{{usuario.id}}">Actualizar</button>
+        </td>
+        
+      </tr>
+     </tbody>
+  </table>
+</div>
