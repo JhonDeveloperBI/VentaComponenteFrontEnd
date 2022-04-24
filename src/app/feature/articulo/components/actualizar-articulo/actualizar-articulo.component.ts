@@ -8,8 +8,7 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 
 @Component({
   selector: 'app-actualizar-articulo',
-  templateUrl: './actualizar-articulo.component.html',
-  styleUrls: ['./actualizar-articulo.component.css']
+  templateUrl: './actualizar-articulo.component.html'
 })
 export class ActualizarArticuloComponent implements OnInit {
 
