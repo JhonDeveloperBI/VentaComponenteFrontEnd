@@ -14,7 +14,6 @@ export class ArticuloService {
   }
 
   public guardar(articulo: Articulo) {
-    console.log(articulo)
     return this.http.doPost<Articulo, boolean>(`${environment.endpoint}/articulos`, articulo,
                                                 this.http.optsName('crear articulo'));
   }

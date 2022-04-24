@@ -14,6 +14,9 @@ describe('CrearUsuarioComponent', () => {
   let fixture: ComponentFixture<CrearUsuarioComponent>;
   let usuarioService: UsuarioService;
 
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CrearUsuarioComponent ],

@@ -18,6 +18,9 @@ describe('CrearVentaArticuloComponent', () => {
   let ventaService: VentaService;
   let usuarioService: UsuarioService;
   let usuarios : any [];
+  
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

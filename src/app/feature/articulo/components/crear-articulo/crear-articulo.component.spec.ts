@@ -14,6 +14,9 @@ describe('CrearArticuloComponent', () => {
   let component: CrearArticuloComponent;
   let fixture: ComponentFixture<CrearArticuloComponent>;
   let articuloService: ArticuloService;
+  
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -45,9 +48,6 @@ describe('CrearArticuloComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('formulario es invalido cuando esta vacio', () => {
-    expect(component.articuloForm.valid).toBeFalsy();
-  });
 
   it('Registrando componente electronico', () => {
     expect(component.articuloForm.valid).toBeFalsy();
