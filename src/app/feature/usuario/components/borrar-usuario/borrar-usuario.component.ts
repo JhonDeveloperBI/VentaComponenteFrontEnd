@@ -45,16 +45,11 @@ export class BorrarUsuarioComponent implements OnInit {
           error => this.mostrarError(error.error.mensaje)
         );
 
-        this.mostrarMensaje("Se ha eliminado el usuario");
+        this.mostrarMensaje('Se ha eliminado el usuario');
 
         this.router.navigateByUrl('/usuario');
-      
-      
-
-        
-        
       }
-    })
+    });
 
   
   }
