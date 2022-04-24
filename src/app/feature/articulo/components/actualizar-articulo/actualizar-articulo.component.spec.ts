@@ -11,11 +11,14 @@ import { of } from 'rxjs';
 
 import { ActualizarArticuloComponent } from './actualizar-articulo.component';
 import { ListarArticuloComponent } from '../listar-articulo/listar-articulo.component';
+import { Articulo } from '@articulo/shared/model/articulo';
 
 describe('ActualizarArticuloComponent', () => {
   let component: ActualizarArticuloComponent;
   let fixture: ComponentFixture<ActualizarArticuloComponent>;
   let articuloService: ArticuloService;
+  const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1',2,1000), new Articulo(2, 'Producto 2',10,1000)];
+
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -43,17 +46,34 @@ describe('ActualizarArticuloComponent', () => {
     fixture = TestBed.createComponent(ActualizarArticuloComponent);
     component = fixture.componentInstance;
     articuloService = TestBed.inject(ArticuloService);
-    spyOn(articuloService, 'actualizar').and.returnValue(
-      of(true)
-    );
+  
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Debe crear un componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('actualizando componente electronico', () => {
+  it('Debe consultar informacion del articulo', () => {
+    spyOn(articuloService, 'consultar').and.returnValue(
+      of( listaArticulos )
+    );
+    component.getIdArticulo = 1;
+    component.ngOnInit();
+
+    expect(component.articuloForm.valid).toBeFalse();
+  });
+
+
+  
+
+
+
+  it('Debe actualizar componente electronico', () => {
+    spyOn(articuloService, 'actualizar').and.returnValue(
+      of(true)
+    );
+
     expect(component.articuloForm.valid).toBeFalsy();
     component.articuloForm.controls.nombreArticulo.setValue('Componente actualizado');
     component.articuloForm.controls.unidades.setValue(10);
@@ -64,6 +84,20 @@ describe('ActualizarArticuloComponent', () => {
     component.actualizarArticulo();
 
   });
+
+  it('Debe mostrar mensaje de exito cuando se este actualizando',(done) =>{
+  
+    spyOn(articuloService, 'actualizar').and.callThrough();
+
+    component.actualizarArticulo();
+
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Éxito');
+      Swal.clickConfirm();
+      done();
+    });
+
+  })
 
   it('Debe mostrar mensaje de error ', (done) => {
     component.mostrarError("error");
