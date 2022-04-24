@@ -7,8 +7,7 @@ import { Articulo } from 'src/app/feature/articulo/shared/model/articulo';
 
 @Component({
   selector: 'app-listar-articulo',
-  templateUrl: './listar-articulo.component.html',
-  styleUrls: ['./listar-articulo.component.css']
+  templateUrl: './listar-articulo.component.html'
 })
 export class ListarArticuloComponent implements OnInit {
   public listaArticulos: Observable<Articulo[]>;

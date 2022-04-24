@@ -16,6 +16,9 @@ describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
   let fixture: ComponentFixture<BorrarUsuarioComponent>;
 
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BorrarUsuarioComponent ],

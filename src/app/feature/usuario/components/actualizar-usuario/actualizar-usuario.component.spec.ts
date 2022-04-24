@@ -40,10 +40,6 @@ describe('ActualizarUsuarioComponent', () => {
     fixture = TestBed.createComponent(ActualizarUsuarioComponent);
     component = fixture.componentInstance;
     usuarioService = TestBed.inject(UsuarioService);
-    spyOn(usuarioService, 'actualizar').and.returnValue(
-      of(true)
-    );
-
     fixture.detectChanges();
   });
 
@@ -53,7 +49,32 @@ describe('ActualizarUsuarioComponent', () => {
 
 
 it('actualizando usuario', () => {
-  expect(component.usuarioForm.valid).toBeFalsy();
+
+    spyOn(usuarioService, 'actualizar').and.returnValue(
+      of(true)
+    );
+  
+    expect(component.usuarioForm.valid).toBeFalsy();
+    component.usuarioForm.controls.id.setValue('1');
+    component.usuarioForm.controls.nombre.setValue('usuario actualizado');
+    component.usuarioForm.controls.clave.setValue('123_passwor');
+    expect(component.usuarioForm.valid).toBeTruthy();
+    expect(component.usuarioForm).not.toBeNull();
+
+    expect(component.usuarioForm.valid).toBeTruthy();
+
+    component.actualizar();
+
+});
+
+it('actualizando usuario con error', () => {
+
+  spyOn(usuarioService, 'actualizar').and.returnValue(
+    of(null)
+  );
+
+
+   expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
     component.usuarioForm.controls.nombre.setValue('usuario actualizado');
     component.usuarioForm.controls.clave.setValue('123_passwor');

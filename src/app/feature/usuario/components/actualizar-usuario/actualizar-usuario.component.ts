@@ -40,12 +40,12 @@ export class ActualizarUsuarioComponent implements OnInit {
 
   actualizar() {
     this.usuarioService.actualizar(this.getIdUsuario,this.usuarioForm.value).subscribe(
-      data => {if (data){
+      data => {if (data){ //NOSONAR
       }},
       error => this.mostrarError(error.error.mensaje)
     );
     this.success();
-     this.router.navigateByUrl('/usuario/listar')
+     this.router.navigateByUrl('/usuario/listar');
   }
 
   private construirFormularioUsuario() {
