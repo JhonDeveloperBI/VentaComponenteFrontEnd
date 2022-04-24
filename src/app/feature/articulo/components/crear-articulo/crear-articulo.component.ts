@@ -8,8 +8,7 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
 
 @Component({
   selector: 'app-crear-articulo',
-  templateUrl: './crear-articulo.component.html',
-  styleUrls: ['./crear-articulo.component.css']
+  templateUrl: './crear-articulo.component.html'
 })
 export class CrearArticuloComponent implements OnInit {
   articuloForm: FormGroup;

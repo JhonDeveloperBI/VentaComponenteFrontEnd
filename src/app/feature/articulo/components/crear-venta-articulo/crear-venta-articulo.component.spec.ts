@@ -43,9 +43,7 @@ describe('CrearVentaArticuloComponent', () => {
     fixture = TestBed.createComponent(CrearVentaArticuloComponent);
     component = fixture.componentInstance;
     ventaService = TestBed.inject(VentaService);
-    spyOn(ventaService, 'guardar').and.returnValue(
-      of(true)
-    );
+   
 
     usuarios=[new Usuario(1,"test","2022-01-02 00:00:00","1234_pass")];
     usuarioService = TestBed.inject(UsuarioService);
@@ -63,6 +61,10 @@ describe('CrearVentaArticuloComponent', () => {
 
 
   it('Registrando venta', () => {
+    spyOn(ventaService, 'guardar').and.returnValue(
+      of(true)
+    );
+
     expect(component.ventaForm.valid).toBeFalsy();
     component.ventaForm.controls.idArticulo.setValue(1);
     component.ventaForm.controls.idUsuario.setValue(1);
@@ -73,6 +75,40 @@ describe('CrearVentaArticuloComponent', () => {
     component.crear();
 
   });
+
+  it('Debe mostrar el formulario invalido', () => {
+    expect(component.ventaForm.valid).toBeFalsy();
+    component.ventaForm.controls.idArticulo.setValue(1);
+    component.ventaForm.controls.idUsuario.setValue(null);
+    component.ventaForm.controls.nombreUsuario.setValue(null);
+    component.ventaForm.controls.unidadVenta.setValue(3);
+    expect(component.ventaForm.valid).toBeFalse();
+
+  });
+
+  it('Registrando venta mensaje error', () => {
+    
+    spyOn(ventaService, 'guardar').and.returnValue(
+      of(null)
+    );
+
+    spyOn(component, 'mostrarError');
+    component.mostrarError('error');
+
+    expect(component.ventaForm.valid).toBeFalsy();
+    component.ventaForm.controls.idArticulo.setValue(1);
+    component.ventaForm.controls.idUsuario.setValue(1);
+    component.ventaForm.controls.nombreUsuario.setValue("usuario nombre");
+    component.ventaForm.controls.unidadVenta.setValue(3);
+    expect(component.ventaForm.valid).toBeTruthy();
+
+    component.crear();
+   
+
+
+
+  });
+
 
   it('Debe mostrar mensaje de error ', (done) => {
     component.mostrarError("error");

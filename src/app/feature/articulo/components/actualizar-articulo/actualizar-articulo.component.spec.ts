@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { of } from 'rxjs';
 
 import { ActualizarArticuloComponent } from './actualizar-articulo.component';
+import { ListarArticuloComponent } from '../listar-articulo/listar-articulo.component';
 
 describe('ActualizarArticuloComponent', () => {
   let component: ActualizarArticuloComponent;
@@ -26,7 +27,9 @@ describe('ActualizarArticuloComponent', () => {
         imports: [
           CommonModule,
           HttpClientModule,
-          RouterTestingModule,
+          RouterTestingModule.withRoutes(
+            [{path: 'articulo/listar', component: ListarArticuloComponent}]
+          ),
           ReactiveFormsModule,
           FormsModule
         ],
