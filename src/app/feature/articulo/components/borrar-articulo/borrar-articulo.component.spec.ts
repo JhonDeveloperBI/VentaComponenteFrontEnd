@@ -16,6 +16,9 @@ describe('BorrarArticuloComponent', () => {
   let component: BorrarArticuloComponent;
   let fixture: ComponentFixture<BorrarArticuloComponent>;
 
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BorrarArticuloComponent ],

@@ -7,8 +7,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-borrar-articulo',
-  templateUrl: './borrar-articulo.component.html',
-  styleUrls: ['./borrar-articulo.component.css']
+  templateUrl: './borrar-articulo.component.html'
 })
 export class BorrarArticuloComponent implements OnInit {
 
