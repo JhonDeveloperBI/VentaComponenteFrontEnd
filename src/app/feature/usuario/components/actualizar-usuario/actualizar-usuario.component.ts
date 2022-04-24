@@ -10,8 +10,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class ActualizarUsuarioComponent implements OnInit {
 
-  getIdUsuario: any;
-  usuarios : any = [];
+  getIdUsuario: number;
+  usuarios : any = []; //NOSONAR
 
 
   notificacion = Swal.mixin({
@@ -21,12 +21,12 @@ export class ActualizarUsuarioComponent implements OnInit {
 
   usuarioForm: FormGroup;
   constructor(protected usuarioService: UsuarioService, private activeRouter: ActivatedRoute, private router: Router) {
-    this.getIdUsuario = this.activeRouter.snapshot.paramMap.get('id');  
+    this.getIdUsuario = parseInt(this.activeRouter.snapshot.paramMap.get('id'));  
    }
 
   ngOnInit() {
     this.usuarioService.consultar().subscribe(
-        (data : any) =>{
+        (data : any) =>{ //NOSONAR
            this.usuarios = data.map(u => u);
            let usuarioFilter = this.usuarios.filter(u => u.id = this.getIdUsuario );
            this.usuarioForm.controls['id'].setValue(usuarioFilter[0]?.id);

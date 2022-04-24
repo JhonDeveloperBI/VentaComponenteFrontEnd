@@ -28,7 +28,6 @@ export class BorrarArticuloComponent implements OnInit {
 
   borrarArticulo():void{
     this.success();
-  
   }
 
   success(){
@@ -43,22 +42,25 @@ export class BorrarArticuloComponent implements OnInit {
       if (result.isConfirmed) {
 
         this.articuloService.eliminar(this.articulo).subscribe(
-          data => {if (data){
+          data => {if (data){ //NOSONAR
           }},
           error => this.mostrarError(error.error.mensaje)
         );
       
-        this.notificacion.fire({
-          title: 'Éxito',
-          text: 'Se ha eliminado el artículo',
-          icon: 'success'
-        });
+        this.mostrarMensaje('Se ha eliminado el artículo');   
 
         this.router.navigateByUrl('/articulo');   
       }
     })
   }
 
+   mostrarMensaje(mensaje){
+    this.notificacion.fire({
+      title: 'Éxito',
+      text: mensaje,
+      icon: 'success'
+    });
+   }
     mostrarError(mensaje){
       this.notificacion.fire({
         title: 'Error',

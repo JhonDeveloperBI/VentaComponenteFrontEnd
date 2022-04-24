@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
+import Swal from 'sweetalert2';
 
 describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
@@ -41,4 +42,24 @@ describe('BorrarUsuarioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Debe mostrar mensaje de error ', (done) => {
+    component.mostrarError("error");
+
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Error');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
+  it('Debe mostrar mensaje de exito ', (done) => {
+    component.success();
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Esta seguro de eliminar este usuario?');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
 });

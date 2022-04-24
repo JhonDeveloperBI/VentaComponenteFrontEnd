@@ -8,7 +8,7 @@ import { ActualizarUsuarioComponent } from './components/actualizar-usuario/actu
 import { UsuarioComponent } from './components/usuario/usuario.component';
 
 
-const routes: Routes = [
+const routes: Routes = [ //NOSONAR
   {
     path: '',
     component: UsuarioComponent,

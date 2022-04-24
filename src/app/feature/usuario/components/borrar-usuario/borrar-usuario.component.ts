@@ -40,18 +40,16 @@ export class BorrarUsuarioComponent implements OnInit {
       if (result.isConfirmed) {
 
         this.usuarioServices.eliminar(this.usuario).subscribe(
-          data => {if (data){
+          data => {if (data){ //NOSONAR
           }},
           error => this.mostrarError(error.error.mensaje)
         );
 
+        this.mostrarMensaje("Se ha eliminado el usuario");
+
         this.router.navigateByUrl('/usuario');
       
-        this.notificacion.fire({
-          title: 'Éxito',
-          text: 'Se ha eliminado el usuario',
-          icon: 'success'
-        });
+      
 
         
         
@@ -60,6 +58,14 @@ export class BorrarUsuarioComponent implements OnInit {
 
   
   }
+
+    mostrarMensaje(mensaje){
+      this.notificacion.fire({
+        title: 'Éxito',
+        text: mensaje,
+        icon: 'success'
+      });
+    }
 
     mostrarError(mensaje){
       this.notificacion.fire({

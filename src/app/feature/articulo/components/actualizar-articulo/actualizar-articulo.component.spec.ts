@@ -53,4 +53,14 @@ describe('ActualizarArticuloComponent', () => {
     });
   });
 
+  it('Debe mostrar mensaje de exito ', (done) => {
+    component.success();
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Éxito');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
+
 });
