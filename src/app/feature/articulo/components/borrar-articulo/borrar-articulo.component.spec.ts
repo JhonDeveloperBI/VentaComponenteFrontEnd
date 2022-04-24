@@ -10,6 +10,7 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
 import { Articulo } from '@articulo/shared/model/articulo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 describe('BorrarArticuloComponent', () => {
   let component: BorrarArticuloComponent;
@@ -41,4 +42,14 @@ describe('BorrarArticuloComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Debe mostrar mensaje de error ', (done) => {
+    component.mostrarError("error");
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Error');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
 });

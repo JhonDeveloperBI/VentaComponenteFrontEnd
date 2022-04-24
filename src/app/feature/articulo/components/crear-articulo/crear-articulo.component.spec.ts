@@ -9,6 +9,7 @@ import { ArticuloService } from '../../shared/service/articulo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import Swal from 'sweetalert2';
 
 describe('CrearArticuloComponent', () => {
   let component: CrearArticuloComponent;
@@ -59,4 +60,14 @@ describe('CrearArticuloComponent', () => {
 
 
   });
+
+  it('Debe mostrar mensaje de error ', (done) => {
+    component.mostrarError("error");
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Error');
+      Swal.clickConfirm();
+      done();
+    });
+  });
+
 });
