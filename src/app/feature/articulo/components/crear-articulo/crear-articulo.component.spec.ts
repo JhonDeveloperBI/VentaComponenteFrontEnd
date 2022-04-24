@@ -55,8 +55,12 @@ describe('CrearArticuloComponent', () => {
     component.articuloForm.controls.nombreArticulo.setValue('Componente test');
     component.articuloForm.controls.unidades.setValue(10);
     component.articuloForm.controls.precio.setValue(1000);
-    
+
     expect(component.articuloForm.valid).toBeTruthy();
+
+    component.crear();
+    
+   
 
 
   });
