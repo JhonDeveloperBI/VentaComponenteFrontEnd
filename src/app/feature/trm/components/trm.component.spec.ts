@@ -36,6 +36,11 @@ describe('TrmComponent', () => {
     expect(component.spinner).toBeTrue();
   });
 
+  it('Deberia el estado del spinner ser falso', () => {
+    component.spinner= false;
+    expect(component.spinner).toBeFalse();
+  });
+
   it('spinner debería desaparecer despues de 500ms', fakeAsync(() => {
     expect(component.spinner).toBeTrue();
     tick(500);
