@@ -21,7 +21,7 @@ export class ActualizarUsuarioComponent implements OnInit {
 
   usuarioForm: FormGroup;
   constructor(protected usuarioService: UsuarioService, private activeRouter: ActivatedRoute, private router: Router) {
-    this.getIdUsuario = parseInt(this.activeRouter.snapshot.paramMap.get('id'));  
+    this.getIdUsuario = Number(this.activeRouter.snapshot.paramMap.get('id'));  
    }
 
   ngOnInit() {

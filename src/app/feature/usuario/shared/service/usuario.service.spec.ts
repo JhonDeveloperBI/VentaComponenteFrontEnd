@@ -50,6 +50,16 @@ describe('UsuarioService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
+  it('deberia actualizar un usuario', () => {
+    const dummyUsuario = new Usuario(1, 'usuario1','123aaa','2020-01-04 00:00:00');
+    service.actualizar(1,dummyUsuario).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${apiEndpointUsuarios}/1`);
+    expect(req.request.method).toBe('PUT');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
+
   it('deberia eliminar un usuario', () => {
     const dummyUsuarios = new Usuario(1, 'usuario1','123','2020-01-05 00:00:00');
     service.eliminar(dummyUsuarios).subscribe((respuesta) => {

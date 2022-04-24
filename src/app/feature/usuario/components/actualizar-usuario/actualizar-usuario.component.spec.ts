@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
+import { of } from 'rxjs';
 import Swal from 'sweetalert2';
 
 import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
@@ -13,6 +14,7 @@ import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
 describe('ActualizarUsuarioComponent', () => {
   let component: ActualizarUsuarioComponent;
   let fixture: ComponentFixture<ActualizarUsuarioComponent>;
+  let usuarioService : UsuarioService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -37,6 +39,11 @@ describe('ActualizarUsuarioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ActualizarUsuarioComponent);
     component = fixture.componentInstance;
+    usuarioService = TestBed.inject(UsuarioService);
+    spyOn(usuarioService, 'actualizar').and.returnValue(
+      of(true)
+    );
+
     fixture.detectChanges();
   });
 
@@ -44,6 +51,20 @@ describe('ActualizarUsuarioComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
+it('actualizando usuario', () => {
+  expect(component.usuarioForm.valid).toBeFalsy();
+    component.usuarioForm.controls.id.setValue('1');
+    component.usuarioForm.controls.nombre.setValue('usuario actualizado');
+    component.usuarioForm.controls.clave.setValue('123_passwor');
+    expect(component.usuarioForm.valid).toBeTruthy();
+    expect(component.usuarioForm).not.toBeNull();
+
+    expect(component.usuarioForm.valid).toBeTruthy();
+
+    component.actualizar();
+
+});
 
   it('Debe mostrar mensaje de error ', (done) => {
     component.mostrarError("error");
