@@ -51,7 +51,7 @@ export class ActualizarArticuloComponent implements OnInit {
       data => {if (data){ //NOSONAR
       }},
       error => this.mostrarError(error.error.mensaje)
-    )
+    );
     this.success();
     this.router.navigateByUrl('/articulo/listar');
   
