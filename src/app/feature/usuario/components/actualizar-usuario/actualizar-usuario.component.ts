@@ -45,7 +45,7 @@ export class ActualizarUsuarioComponent implements OnInit {
       error => this.mostrarError(error.error.mensaje)
     );
     this.success();
-     this.router.navigateByUrl('/usuario/listar');
+     this.router.navigateByUrl('/usuario');
   }
 
   private construirFormularioUsuario() {
