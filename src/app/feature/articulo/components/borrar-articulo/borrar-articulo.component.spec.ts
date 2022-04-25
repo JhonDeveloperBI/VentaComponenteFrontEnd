@@ -45,9 +45,7 @@ describe('BorrarArticuloComponent', () => {
     component = fixture.componentInstance;
     component.articulo = new Articulo(1," articulo test",10,1000);
     articuloService = TestBed.inject(ArticuloService);
-    spyOn(articuloService, 'eliminar').and.returnValue(
-     of( true )
-    );
+  
 
     fixture.detectChanges();
   });
@@ -57,6 +55,10 @@ describe('BorrarArticuloComponent', () => {
   });
 
   it('Debe borrar un articulo', (done) => {
+    
+    spyOn(articuloService, 'eliminar').and.returnValue(
+      of( true )
+     );
 
     component.borrarArticulo();
 
@@ -70,7 +72,19 @@ describe('BorrarArticuloComponent', () => {
 
   });
 
+  it('Debe mostrar mensaje de exito cuando se este actualizando',(done) =>{
   
+    spyOn(articuloService, 'eliminar').and.callThrough();
+
+    component.success();
+
+    setTimeout(() => {
+      expect(Swal.getTitle().textContent).toEqual('Esta seguro de eliminar este artículo?');
+      Swal.clickConfirm();
+      done();
+    });
+
+  })
 
   it('Debe mostrar mensaje de error ', (done) => {
     component.mostrarError("error");

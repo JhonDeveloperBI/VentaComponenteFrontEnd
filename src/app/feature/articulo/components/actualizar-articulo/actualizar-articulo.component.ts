@@ -49,10 +49,9 @@ export class ActualizarArticuloComponent implements OnInit {
   actualizarArticulo(){
     this.articuloService.actualizar(this.getIdArticulo,this.articuloForm.value).subscribe(
       data => {if (data){ //NOSONAR
-        console.log("tenemos informacion")
       }},
       error => this.mostrarError(error.error.mensaje)
-    );
+    )
     this.success();
     this.router.navigateByUrl('/articulo/listar');
   
