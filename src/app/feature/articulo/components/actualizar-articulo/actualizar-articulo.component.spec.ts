@@ -17,7 +17,7 @@ describe('ActualizarArticuloComponent', () => {
   let component: ActualizarArticuloComponent;
   let fixture: ComponentFixture<ActualizarArticuloComponent>;
   let articuloService: ArticuloService;
-  const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1',2,1000), new Articulo(2, 'Producto 2',10,1000)];
+  const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1', 2, 1000), new Articulo(2, 'Producto 2', 10, 1000)];
 
 
   afterEach(() => { TestBed.resetTestingModule(); });
@@ -36,7 +36,7 @@ describe('ActualizarArticuloComponent', () => {
           ReactiveFormsModule,
           FormsModule
         ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
         providers: [ArticuloService, HttpService]
     })
     .compileComponents();
@@ -46,7 +46,7 @@ describe('ActualizarArticuloComponent', () => {
     fixture = TestBed.createComponent(ActualizarArticuloComponent);
     component = fixture.componentInstance;
     articuloService = TestBed.inject(ArticuloService);
-  
+
     fixture.detectChanges();
   });
 
@@ -64,11 +64,6 @@ describe('ActualizarArticuloComponent', () => {
     expect(component.articuloForm.valid).toBeFalse();
   });
 
-
-  
-
-
-
   it('Debe actualizar componente electronico', () => {
     spyOn(articuloService, 'actualizar').and.returnValue(
       of(true)
@@ -78,15 +73,15 @@ describe('ActualizarArticuloComponent', () => {
     component.articuloForm.controls.nombreArticulo.setValue('Componente actualizado');
     component.articuloForm.controls.unidades.setValue(10);
     component.articuloForm.controls.precio.setValue(1000);
-    
+
     expect(component.articuloForm.valid).toBeTruthy();
 
     component.actualizarArticulo();
 
   });
 
-  it('Debe mostrar mensaje de exito cuando se este actualizando',(done) =>{
-  
+  it('Debe mostrar mensaje de exito cuando se este actualizando', (done) => {
+
     spyOn(articuloService, 'actualizar').and.callThrough();
 
     component.actualizarArticulo();
@@ -97,10 +92,10 @@ describe('ActualizarArticuloComponent', () => {
       done();
     });
 
-  })
+  });
 
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError("error");
+  it('Debe mostrar mensaje de error', (done) => {
+    component.mostrarError('error');
     setTimeout(() => {
       expect(Swal.getTitle().textContent).toEqual('Error');
       Swal.clickConfirm();
@@ -116,6 +111,5 @@ describe('ActualizarArticuloComponent', () => {
       done();
     });
   });
-
 
 });

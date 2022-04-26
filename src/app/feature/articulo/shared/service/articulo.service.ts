@@ -23,8 +23,8 @@ export class ArticuloService {
                                                  this.http.optsName('eliminar articulo'));
   }
 
-  public actualizar(id:number, articulo:Articulo){
-    return this.http.doUpdate(`${environment.endpoint}/articulos/${id}`,articulo,
+  public actualizar(id: number, articulo: Articulo){
+    return this.http.doUpdate(`${environment.endpoint}/articulos/${id}`, articulo,
                                                   this.http.optsName('actualizar articulo'));
   }
 }

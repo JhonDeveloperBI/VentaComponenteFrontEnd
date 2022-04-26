@@ -38,8 +38,8 @@ export class CrearArticuloComponent implements OnInit {
     this.articuloForm = new FormGroup({
       nombreArticulo: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
-      unidades: new FormControl('',Validators.required),
-      precio:new FormControl('',Validators.required)
+      unidades: new FormControl('', Validators.required),
+      precio: new FormControl('', Validators.required)
     });
   }
 

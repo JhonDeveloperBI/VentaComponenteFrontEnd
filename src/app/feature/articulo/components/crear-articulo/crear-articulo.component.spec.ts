@@ -8,14 +8,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ArticuloService } from '../../shared/service/articulo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import {  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import Swal from 'sweetalert2';
 
 describe('CrearArticuloComponent', () => {
   let component: CrearArticuloComponent;
   let fixture: ComponentFixture<CrearArticuloComponent>;
   let articuloService: ArticuloService;
-  
+
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
@@ -29,7 +29,7 @@ describe('CrearArticuloComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [ArticuloService, HttpService],
     })
     .compileComponents();
@@ -59,14 +59,11 @@ describe('CrearArticuloComponent', () => {
     expect(component.articuloForm.valid).toBeTruthy();
 
     component.crear();
-    
-   
-
 
   });
 
   it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError("error");
+    component.mostrarError('error');
     setTimeout(() => {
       expect(Swal.getTitle().textContent).toEqual('Error');
       Swal.clickConfirm();
@@ -75,3 +72,4 @@ describe('CrearArticuloComponent', () => {
   });
 
 });
+

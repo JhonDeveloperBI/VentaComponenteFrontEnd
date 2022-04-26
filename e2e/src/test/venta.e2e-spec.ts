@@ -21,5 +21,5 @@ describe('workspace-project Venta', () => {
         expect(venta.mostroTabla()).toBe(true);
     });
 
-  
 });
+

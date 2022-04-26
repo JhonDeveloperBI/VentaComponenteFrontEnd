@@ -8,7 +8,7 @@ import { ArticuloComponent } from './components/articulo/articulo.component';
 import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
 
 
-const routes: Routes = [ //NOSONAR
+const routes: Routes = [
   {
     path: '',
     component: ArticuloComponent,
@@ -31,7 +31,7 @@ const routes: Routes = [ //NOSONAR
       },
       {
         path: 'borrar',
-        component: BorrarArticuloComponent  
+        component: BorrarArticuloComponent
       }
     ]
   }
@@ -42,3 +42,4 @@ const routes: Routes = [ //NOSONAR
   exports: [RouterModule]
 })
 export class ArticuloRoutingModule { }
+

@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'articulo', loadChildren: () => import('src/app/feature/articulo/articulo.module').then(mod => mod.ArticuloModule) },
   { path: 'venta', loadChildren: () => import('@venta/venta.module').then(mod => mod.VentaModule) },
   { path: 'usuario', loadChildren: () => import('@usuario/usuario.module').then(mod => mod.UsuarioModule) }
-  
-  
+
+
 ];
 
 @NgModule({
@@ -19,3 +19,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

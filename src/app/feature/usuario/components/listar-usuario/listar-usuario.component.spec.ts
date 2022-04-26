@@ -8,13 +8,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { Usuario } from '../../shared/model/usuario';
 import { HttpService } from 'src/app/core/services/http.service';
-import {  CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA } from '@angular/core';
+import {  CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListarUsuarioComponent', () => {
   let component: ListarUsuarioComponent;
   let fixture: ComponentFixture<ListarUsuarioComponent>;
   let usuarioService: UsuarioService;
-  const listaUsuarios: Usuario[] = [new Usuario(1, 'usuario 1', '123','2022-04-2017 00:00:00'), new Usuario(2, 'usuario 2', '2223ca','2020-02-09 00:00:00')];
+  const listaUsuarios: Usuario[] = [new Usuario(1, 'usuario 1', '123', '2022-04-2017 00:00:00'), new Usuario(2, 'usuario 2', '2223ca', '2020-02-09 00:00:00')];
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -27,7 +27,7 @@ describe('ListarUsuarioComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [UsuarioService, HttpService]
     })
       .compileComponents();

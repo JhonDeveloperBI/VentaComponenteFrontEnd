@@ -59,18 +59,14 @@ describe('CrearUsuarioComponent', () => {
     expect(component.usuarioForm).not.toBeNull();
 
     component.crear();
-        
   });
 
   it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError("error");
+    component.mostrarError('error');
     setTimeout(() => {
       expect(Swal.getTitle().textContent).toEqual('Error');
       Swal.clickConfirm();
       done();
     });
   });
-
-
-  
 });

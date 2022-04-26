@@ -16,14 +16,14 @@ export class BorrarUsuarioComponent implements OnInit {
   });
 
   @Input()
-  usuario:Usuario;
+  usuario: Usuario;
 
   constructor(protected usuarioServices: UsuarioService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  borrarUsuario() { 
+  borrarUsuario() {
     this.success();
   }
 
@@ -40,7 +40,7 @@ export class BorrarUsuarioComponent implements OnInit {
       if (result.isConfirmed) {
 
         this.usuarioServices.eliminar(this.usuario).subscribe(
-          data => {if (data){ //NOSONAR
+          data => {if (data) { // NOSONAR
           }},
           error => this.mostrarError(error.error.mensaje)
         );
@@ -50,8 +50,6 @@ export class BorrarUsuarioComponent implements OnInit {
         this.router.navigateByUrl('/usuario');
       }
     });
-
-  
   }
 
     mostrarMensaje(mensaje){

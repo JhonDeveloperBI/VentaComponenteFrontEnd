@@ -15,7 +15,7 @@ import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
 describe('ActualizarUsuarioComponent', () => {
   let component: ActualizarUsuarioComponent;
   let fixture: ComponentFixture<ActualizarUsuarioComponent>;
-  let usuarioService : UsuarioService;
+  let usuarioService: UsuarioService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -23,20 +23,20 @@ describe('ActualizarUsuarioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
 
-        declarations: [ ActualizarUsuarioComponent ],
-        imports: [
-          CommonModule,
-          HttpClientModule,
-          RouterTestingModule.withRoutes(
-            [{path: 'usuario', component: UsuarioComponent}]
-          ),
-          ReactiveFormsModule,
-          FormsModule
-        ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
-        providers: [UsuarioService, HttpService]
+      declarations: [ActualizarUsuarioComponent],
+      imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterTestingModule.withRoutes(
+          [{ path: 'usuario', component: UsuarioComponent }]
+        ),
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      providers: [UsuarioService, HttpService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -51,12 +51,12 @@ describe('ActualizarUsuarioComponent', () => {
   });
 
 
-it('actualizando usuario', () => {
+  it('actualizando usuario', () => {
 
     spyOn(usuarioService, 'actualizar').and.returnValue(
       of(true)
     );
-  
+
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
     component.usuarioForm.controls.nombre.setValue('usuario actualizado');
@@ -68,31 +68,24 @@ it('actualizando usuario', () => {
 
     component.actualizar();
 
-});
+  });
 
-it('actualizando usuario con error', () => {
-
-  spyOn(usuarioService, 'actualizar').and.returnValue(
-    of(null)
-  );
-
-
-   expect(component.usuarioForm.valid).toBeFalsy();
+  it('actualizando usuario con error', () => {
+    spyOn(usuarioService, 'actualizar').and.returnValue(
+      of(null)
+    );
+    expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
     component.usuarioForm.controls.nombre.setValue('usuario actualizado');
     component.usuarioForm.controls.clave.setValue('123_passwor');
     expect(component.usuarioForm.valid).toBeTruthy();
     expect(component.usuarioForm).not.toBeNull();
-
     expect(component.usuarioForm.valid).toBeTruthy();
-
     component.actualizar();
-
-});
+  });
 
   it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError("error");
-
+    component.mostrarError('error');
     setTimeout(() => {
       expect(Swal.getTitle().textContent).toEqual('Error');
       Swal.clickConfirm();
@@ -108,5 +101,4 @@ it('actualizando usuario con error', () => {
       done();
     });
   });
-
 });

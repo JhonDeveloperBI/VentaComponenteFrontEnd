@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ArticuloService } from 'src/app/feature/articulo/shared/service/articulo.service';
 import { Articulo } from 'src/app/feature/articulo/shared/model/articulo';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class BorrarArticuloComponent implements OnInit {
   ngOnInit() {
   }
 
-  borrarArticulo():void{
+  borrarArticulo(): void{
     this.success();
   }
 
@@ -41,17 +41,17 @@ export class BorrarArticuloComponent implements OnInit {
       if (result.isConfirmed) {
 
         this.articuloService.eliminar(this.articulo).subscribe(
-          data => {if (data){ //NOSONAR
+          data => {if (data){ // NOSONAR
           }},
           error => this.mostrarError(error.error.mensaje)
         );
-      
-        this.mostrarMensaje('Se ha eliminado el artículo');   
 
-        this.router.navigateByUrl('/articulo');   
+        this.mostrarMensaje('Se ha eliminado el artículo');
+
+        this.router.navigateByUrl('/articulo');
       }
     });
-    
+
   }
 
    mostrarMensaje(mensaje){

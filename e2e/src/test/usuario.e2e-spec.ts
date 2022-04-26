@@ -13,20 +13,18 @@ describe('workspace-project Usuario', () => {
         usuario = new UsuarioPage();
     });
 
-   it('Deberia crear usuario', () => {
+    it('Deberia crear usuario', () => {
         const NOMBRE_USUARIO = 'usuario 3';
         const CLAVE_USUARIO = '123_pass';
 
         page.navigateTo();
         navBar.clickBotonUsuario();
         usuario.clickBotonCrearUsuarios();
-        
         usuario.ingresarNombreUsuario(NOMBRE_USUARIO);
         usuario.ingresarClaveUsuario(CLAVE_USUARIO);
         usuario.clickBotonGuardar();
-       
-        expect(usuario.mostroNotificacionInformativa()).toBe(true);
 
+        expect(usuario.mostroNotificacionInformativa()).toBe(true);
     });
 
     it('Deberia lanzar un error al ingresar un usuario ya registrado', () => {
@@ -36,11 +34,11 @@ describe('workspace-project Usuario', () => {
         page.navigateTo();
         navBar.clickBotonUsuario();
         usuario.clickBotonCrearUsuarios();
-        
+
         usuario.ingresarNombreUsuario(NOMBRE_USUARIO);
         usuario.ingresarClaveUsuario(CLAVE_USUARIO);
         usuario.clickBotonGuardar();
-       
+
         expect(usuario.mostroNotificacionError()).toBe(true);
 
     });
@@ -55,8 +53,7 @@ describe('workspace-project Usuario', () => {
         expect(usuario.contarUsuarios()).toBeGreaterThan(0);
     });
 
-    it('Deberia actualizar un usuario',() => {
-
+    it('Deberia actualizar un usuario', () => {
         const NOMBRE_USUARIO = 'usuario actualizado';
         const CLAVE_USUARIO = '123_pass';
 
@@ -66,14 +63,13 @@ describe('workspace-project Usuario', () => {
         usuario.clickBotonActualizar();
         usuario.limpiarInputNombreUsuario();
         usuario.limpiarInputClaveUsuario();
-        
+
         usuario.ingresarNombreUsuario(NOMBRE_USUARIO);
         usuario.ingresarClaveUsuario(CLAVE_USUARIO);
         usuario.clickBotonActualizarUsuario();
-       
+
         expect(usuario.mostroNotificacionInformativa()).toBe(true);
     });
-    
 
     it('Deberia borrrar el usuario', () => {
         page.navigateTo();

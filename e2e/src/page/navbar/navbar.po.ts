@@ -7,7 +7,6 @@ export class NavbarPage {
     linkCrearArticulo = element(by.xpath('//*[@id="linkCrearArticulo"]'));
     linkVenta = element(by.xpath('/html/body/app-root/app-navbar/nav/div/ul/a[3]'));
 
-    
     async clickBotonArticulo() {
         await this.linkArticulo.click();
     }
@@ -23,5 +22,4 @@ export class NavbarPage {
     async clickLinkVenta(){
         await this.linkVenta.click();
     }
-    
 }

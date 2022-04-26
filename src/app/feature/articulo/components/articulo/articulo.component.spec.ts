@@ -8,7 +8,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('ArticuloComponent', () => {
   let component: ArticuloComponent;
   let fixture: ComponentFixture<ArticuloComponent>;
-  
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 

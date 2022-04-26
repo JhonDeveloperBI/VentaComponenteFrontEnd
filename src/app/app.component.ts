@@ -14,8 +14,6 @@ export class AppComponent {
     { url: '/articulo', nombre: 'componente electrónico' },
     { url: '/venta', nombre: 'venta' },
     { url: '/usuario', nombre: 'usuario' }
-    
   ];
 
-  
 }

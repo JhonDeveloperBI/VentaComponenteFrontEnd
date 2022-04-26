@@ -29,7 +29,7 @@ describe('ArticuloService', () => {
 
   it('deberia listar articulos', () => {
     const dummyArticulos = [
-      new Articulo(1, 'Producto 1',10,1000), new Articulo(2, 'Producto 2',11,2000)
+      new Articulo(1, 'Producto 1', 10, 1000), new Articulo(2, 'Producto 2', 11, 2000)
     ];
     service.consultar().subscribe(articulos => {
       expect(articulos.length).toBe(2);
@@ -41,7 +41,7 @@ describe('ArticuloService', () => {
   });
 
   it('deberia crear un articulo', () => {
-    const dummyArticulo = new Articulo(1, 'Producto 1',10,1000);
+    const dummyArticulo = new Articulo(1, 'Producto 1', 10, 1000);
     service.guardar(dummyArticulo).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -51,18 +51,17 @@ describe('ArticuloService', () => {
   });
 
   it('deberia actualizar un articulo', () => {
-    const dummyArticulo = new Articulo(1, 'articulo actualizado',10,1000);
-    service.actualizar(1,dummyArticulo).subscribe((respuesta) => {
+    const dummyArticulo = new Articulo(1, 'articulo actualizado', 10, 1000);
+    service.actualizar(1, dummyArticulo).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(`${apiEndpointArticulos}/1`);
     expect(req.request.method).toBe('PUT');
     req.event(new HttpResponse<boolean>({body: true}));
   });
-  
 
   it('deberia eliminar un articulo', () => {
-    const dummyArticulo = new Articulo(1, 'Producto 1',100,2000);
+    const dummyArticulo = new Articulo(1, 'Producto 1', 100, 2000);
     service.eliminar(dummyArticulo).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

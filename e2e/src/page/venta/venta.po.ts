@@ -4,12 +4,11 @@ export class VentaPage {
 private linkListarVentas = element(by.xpath('//*[@id="linkListarVenta"]'));
 private listaVentas = element(by.className('table'));
 
-
 async clickBotonListarVentas(){
     await this.linkListarVentas.click();
 }
 
-async mostroTabla():Promise<Boolean>{
+async mostroTabla(): Promise<boolean>{
     return (this.listaVentas).isPresent();
 }
 

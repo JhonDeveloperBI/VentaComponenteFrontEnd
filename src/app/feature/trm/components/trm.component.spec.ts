@@ -37,7 +37,7 @@ describe('TrmComponent', () => {
   });
 
   it('Deberia el estado del spinner ser falso', () => {
-    component.spinner= false;
+    component.spinner = false;
     expect(component.spinner).toBeFalse();
   });
 
@@ -49,5 +49,4 @@ describe('TrmComponent', () => {
       expect(component.spinner).toBeFalse();
     });
    }));
-
 });

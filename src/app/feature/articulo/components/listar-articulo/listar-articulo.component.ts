@@ -18,7 +18,4 @@ export class ListarArticuloComponent implements OnInit {
   ngOnInit() {
     this.listaArticulos = this.articuloService.consultar();
   }
-
-  
-
 }

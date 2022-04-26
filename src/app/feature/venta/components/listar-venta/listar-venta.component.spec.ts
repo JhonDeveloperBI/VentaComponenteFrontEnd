@@ -14,11 +14,12 @@ describe('ListarVentaComponent', () => {
   let component: ListarVentaComponent;
   let fixture: ComponentFixture<ListarVentaComponent>;
   let ventaService: VentaService;
-  const listaVentas: Venta[] = [new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01"), new Venta(1, 1, 500,10,5000,"sin descuento","2022-02-01")];
+  const listaVentas: Venta[] = [new Venta(1, 1, 500, 10, 5000, 'sin descuento', '2022-02-01'),
+  new Venta(1, 1, 500, 10, 5000, 'sin descuento', '2022-02-01')];
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
-  
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ListarVentaComponent],
@@ -50,5 +51,5 @@ describe('ListarVentaComponent', () => {
       expect(2).toBe(resultado.length);
   });
 });
-
 });
+
