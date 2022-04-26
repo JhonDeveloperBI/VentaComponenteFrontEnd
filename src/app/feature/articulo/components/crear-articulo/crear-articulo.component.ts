@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
+const numericNumberReg= '^-?[0-9]\\d*(\\.\\d{1,2})?$';
 
 @Component({
   selector: 'app-crear-articulo',
@@ -38,8 +39,8 @@ export class CrearArticuloComponent implements OnInit {
     this.articuloForm = new FormGroup({
       nombreArticulo: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
-      unidades: new FormControl('', Validators.required),
-      precio: new FormControl('', Validators.required)
+      unidades: new FormControl('',[ Validators.required, Validators.pattern(numericNumberReg)]),
+      precio: new FormControl('', [Validators.required, Validators.pattern(numericNumberReg)])
     });
   }
 

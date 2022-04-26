@@ -12,9 +12,9 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 })
 export class ActualizarArticuloComponent implements OnInit {
 
-  const inputNombreArticulo = 'nombreArticulo';
-  const inputPrecio = 'precio';
-  const inputUnidades = 'unidades';
+   inputNombreArticulo = 'nombreArticulo';
+   inputPrecio = 'precio';
+   inputUnidades = 'unidades';
 
   getIdArticulo: any; // NOSONAR
   articulos: any = []; // NOSONAR
