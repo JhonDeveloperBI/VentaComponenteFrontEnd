@@ -7,33 +7,34 @@ import { VentaService } from '@venta/shared/service/venta.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import { IAlertaService } from '@core/services/alerta.service';
 
+const id = 'id';
+const inputIdArticulo = 'idArticulo';
+const inputIdUsuario = 'idUsuario';
+const inputnombreUsuario = 'nombreUsuario';
+const mensajeExito = 'Se ha creado una venta';
+
 @Component({
   selector: 'app-crear-venta',
   templateUrl: './crear-venta.component.html'
 })
 export class CrearVentaComponent implements OnInit {
 
-
-  inputIdArticulo = 'idArticulo';
-  inputIdUsuario = 'idUsuario';
-  inputnombreUsuario = 'nombreUsuario';
-
   getIdArticulo: number;
   ventaForm: FormGroup;
 
   constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute,
     protected usuarioService: UsuarioService, private router: Router, protected alert: IAlertaService) {
-    this.getIdArticulo = Number(this.activeRouter.snapshot.paramMap.get('id'));
+    this.getIdArticulo = Number(this.activeRouter.snapshot.paramMap.get(id));
   }
 
   ngOnInit() {
     this.construirFormularioVenta();
-    this.ventaForm.controls[this.inputIdArticulo].setValue(this.getIdArticulo);
+    this.ventaForm.controls[inputIdArticulo].setValue(this.getIdArticulo);
 
     this.usuarioService.consultar().subscribe(
       res => {
-        this.ventaForm.controls[this.inputIdUsuario].setValue(res[0]?.id);
-        this.ventaForm.controls[this.inputnombreUsuario].setValue(res[0]?.nombre);
+        this.ventaForm.controls[inputIdUsuario].setValue(res[0]?.id);
+        this.ventaForm.controls[inputnombreUsuario].setValue(res[0]?.nombre);
       }
     );
   }
@@ -43,7 +44,7 @@ export class CrearVentaComponent implements OnInit {
     this.ventaServices.guardar(this.ventaForm.value).subscribe(
       data => {
         if (data) {
-          this.alert.exito('Se ha creado una venta');
+          this.alert.exito(mensajeExito);
           this.ventaForm.reset();
           this.router.navigateByUrl('/');
         }

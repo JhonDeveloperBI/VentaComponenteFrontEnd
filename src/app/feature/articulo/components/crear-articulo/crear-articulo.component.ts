@@ -6,6 +6,7 @@ import { IAlertaService } from '@core/services/alerta.service';
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
 const numericNumberReg= '^-?[0-9]\\d*(\\.\\d{1,2})?$';
+const mensajeCreoUsuario= 'Se ha creado el artículo';
 
 @Component({
   selector: 'app-crear-articulo',
@@ -32,7 +33,7 @@ export class CrearArticuloComponent implements OnInit {
     */
     this.articuloServices.guardar(this.articuloForm.value).subscribe(
       data => {if (data){
-        this.alerta.exito("Se ha creado el artículo");
+        this.alerta.exito(mensajeCreoUsuario);
         this.articuloForm.reset();
       }}
     );

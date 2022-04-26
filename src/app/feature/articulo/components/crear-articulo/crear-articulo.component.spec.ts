@@ -9,17 +9,26 @@ import { ArticuloService } from '../../shared/service/articulo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 
 
 describe('CrearArticuloComponent', () => {
   let component: CrearArticuloComponent;
   let fixture: ComponentFixture<CrearArticuloComponent>;
   let articuloService: ArticuloService;
+  let alertaSpy: IAlertaService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
+    alertaSpy = {
+      informativa: jasmine.createSpy('informativa'),
+      confirmacion: null,
+      errorInesperado: jasmine.createSpy('errorInesperado'),
+      exito: jasmine.createSpy('Se ha creado el artículo')
+    };
     TestBed.configureTestingModule({
       declarations: [ CrearArticuloComponent ],
       imports: [
@@ -30,7 +39,8 @@ describe('CrearArticuloComponent', () => {
         FormsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      providers: [ArticuloService, HttpService],
+      providers: [ArticuloService, HttpService,
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
     })
     .compileComponents();
   }));
@@ -59,6 +69,8 @@ describe('CrearArticuloComponent', () => {
     expect(component.articuloForm.valid).toBeTruthy();
 
     component.crear();
+
+    expect(alertaSpy.exito).toHaveBeenCalled();
 
   });
 

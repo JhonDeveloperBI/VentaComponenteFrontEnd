@@ -12,17 +12,27 @@ import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
 
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
+
 describe('CrearVentaComponent', () => {
   let component: CrearVentaComponent;
   let fixture: ComponentFixture<CrearVentaComponent>;
   let ventaService: VentaService;
   let usuarioService: UsuarioService;
   let usuarios: any[];
+  let alertaSpy: IAlertaService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
+    alertaSpy = {
+      informativa: jasmine.createSpy('informativa'),
+      confirmacion: null,
+      errorInesperado: jasmine.createSpy('errorInesperado'),
+      exito: jasmine.createSpy('Se ha creado una venta')
+    };
     TestBed.configureTestingModule({
       declarations: [CrearVentaComponent],
       imports: [
@@ -33,7 +43,8 @@ describe('CrearVentaComponent', () => {
         FormsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      providers: [VentaService, UsuarioService, HttpService],
+      providers: [VentaService, UsuarioService, HttpService,
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
     })
       .compileComponents();
   }));
@@ -70,6 +81,8 @@ describe('CrearVentaComponent', () => {
     expect(component.ventaForm.valid).toBeTruthy();
 
     component.crear();
+
+    expect(alertaSpy.exito).toHaveBeenCalled();
 
   });
 

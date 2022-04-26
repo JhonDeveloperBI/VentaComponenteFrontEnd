@@ -4,10 +4,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import { of } from 'rxjs';
-import Swal from 'sweetalert2';
 import { UsuarioComponent } from '../usuario/usuario.component';
 
 import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
@@ -16,13 +17,19 @@ describe('ActualizarUsuarioComponent', () => {
   let component: ActualizarUsuarioComponent;
   let fixture: ComponentFixture<ActualizarUsuarioComponent>;
   let usuarioService: UsuarioService;
+  let alertaSpy: IAlertaService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(async () => {
+    alertaSpy = {
+      informativa: jasmine.createSpy('informativa'),
+      confirmacion: null,
+      errorInesperado: jasmine.createSpy('error Inesperado'),
+      exito: jasmine.createSpy('Se ha actualizado el usuario')
+    };
     await TestBed.configureTestingModule({
-
       declarations: [ActualizarUsuarioComponent],
       imports: [
         CommonModule,
@@ -34,7 +41,8 @@ describe('ActualizarUsuarioComponent', () => {
         FormsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      providers: [UsuarioService, HttpService]
+      providers: [UsuarioService, HttpService,
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }]
     })
       .compileComponents();
   });
@@ -68,12 +76,13 @@ describe('ActualizarUsuarioComponent', () => {
 
     component.actualizar();
 
+    expect(alertaSpy.exito).toHaveBeenCalled();
+
   });
 
   it('actualizando usuario con error', () => {
-    spyOn(usuarioService, 'actualizar').and.returnValue(
-      of(null)
-    );
+    spyOn(usuarioService, 'actualizar').and.throwError('error Inesperado');
+
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
     component.usuarioForm.controls.nombre.setValue('usuario actualizado');
@@ -82,6 +91,8 @@ describe('ActualizarUsuarioComponent', () => {
     expect(component.usuarioForm).not.toBeNull();
     expect(component.usuarioForm.valid).toBeTruthy();
     component.actualizar();
+
+    expect(alertaSpy.errorInesperado).toHaveBeenCalled();
   });
 
   /*
