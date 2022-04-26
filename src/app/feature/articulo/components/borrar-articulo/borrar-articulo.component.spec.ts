@@ -10,7 +10,7 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 import {  CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA } from '@angular/core';
 import { Articulo } from '@articulo/shared/model/articulo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 import { of } from 'rxjs';
 import { ArticuloComponent } from '../articulo/articulo.component';
 
@@ -53,6 +53,7 @@ describe('BorrarArticuloComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  /*
   it('Debe borrar un articulo', (done) => {
 
   spyOn(articuloService, 'eliminar').and.returnValue(
@@ -97,6 +98,6 @@ describe('BorrarArticuloComponent', () => {
       done();
     });
   });
-
+*/
 
 });

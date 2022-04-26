@@ -11,7 +11,7 @@ import { ArticuloService } from './shared/service/articulo.service';
 import { UsuarioService } from '../usuario/shared/service/usuario.service';
 
 import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
-
+import { AlertaService, IAlertaService } from '@core/services/alerta.service';
 
 
 @NgModule({
@@ -26,6 +26,6 @@ import { ActualizarArticuloComponent } from './components/actualizar-articulo/ac
     ArticuloRoutingModule,
     SharedModule
   ],
-  providers: [ArticuloService, UsuarioService]
+  providers: [ArticuloService, UsuarioService, {provide: IAlertaService, useClass: AlertaService}]
 })
 export class ArticuloModule { }

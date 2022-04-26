@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { ArticuloService } from '@articulo/shared/service/articulo.service';
+import { IAlertaService } from '@core/services/alerta.service';
 
-
+const numericNumberReg= '^-?[0-9]\\d*(\\.\\d{1,2})?$';
+const inputNombreArticulo = 'nombreArticulo';
+const inputPrecio = 'precio';
+const inputUnidades = 'unidades';
+const idArticulo = 'id';
+const mensajeActualizacion = 'Se ha actualizado correctamente el artículo';
 
 @Component({
   selector: 'app-actualizar-articulo',
@@ -12,31 +17,23 @@ import { ArticuloService } from '@articulo/shared/service/articulo.service';
 })
 export class ActualizarArticuloComponent implements OnInit {
 
-   inputNombreArticulo = 'nombreArticulo';
-   inputPrecio = 'precio';
-   inputUnidades = 'unidades';
-
   getIdArticulo: any; // NOSONAR
   articulos: any = []; // NOSONAR
 
-  notificacion = Swal.mixin({
-    toast: true,
-    position: 'center'
-  });
-
   articuloForm: FormGroup;
-  constructor(protected articuloService: ArticuloService, private activeRouter: ActivatedRoute, private router: Router) {
-    this.getIdArticulo = this.activeRouter.snapshot.paramMap.get('id');
+  constructor(protected articuloService: ArticuloService, private activeRouter: ActivatedRoute, private router: Router,
+              protected alert: IAlertaService) {
+    this.getIdArticulo = this.activeRouter.snapshot.paramMap.get(idArticulo);
    }
 
   ngOnInit(): void {
     this.articuloService.consultar().subscribe(
       (data: any) => { // NOSONAR
          this.articulos = data.map(u => u);
-         const articuloFilter = this.articulos.filter(u => u.id = this.getIdArticulo );
-         this.articuloForm.controls[this.inputNombreArticulo].setValue(articuloFilter[0]?.nombreArticulo);
-         this.articuloForm.controls[this.inputPrecio].setValue(articuloFilter[0]?.precio);
-         this.articuloForm.controls[this.inputUnidades].setValue(articuloFilter[0]?.unidades);
+         const articuloFilter = this.articulos.filter(u => Number(u.idArticulo) === Number(this.getIdArticulo) )[0];
+         this.articuloForm.controls[inputNombreArticulo].setValue(articuloFilter?.nombreArticulo);
+         this.articuloForm.controls[inputPrecio].setValue(articuloFilter?.precio);
+         this.articuloForm.controls[inputUnidades].setValue(articuloFilter?.unidades);
       }
     );
     this.construirFormularioArticulo();
@@ -45,35 +42,19 @@ export class ActualizarArticuloComponent implements OnInit {
   private construirFormularioArticulo() {
     this.articuloForm = new FormGroup({
       nombreArticulo: new FormControl('', [Validators.required]),
-      precio: new FormControl('', [Validators.required]),
-      unidades: new FormControl('', [Validators.required])
+      unidades: new FormControl('',[ Validators.required, Validators.pattern(numericNumberReg)]),
+      precio: new FormControl('', [Validators.required, Validators.pattern(numericNumberReg)])
     });
   }
 
   actualizarArticulo(){
     this.articuloService.actualizar(this.getIdArticulo, this.articuloForm.value).subscribe(
-      data => {if (data) { // NOSONAR
-      }},
-      error => this.mostrarError(error.error.mensaje)
+      data => {if (data){
+        this.alert.exito(mensajeActualizacion);
+        this.router.navigateByUrl('/articulo/listar');
+      }}
     );
-    this.success();
-    this.router.navigateByUrl('/articulo/listar');
   }
 
-  success(){
-    this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha actualizado el artículo',
-      icon: 'success'
-    });
-  }
-
-    mostrarError(mensaje){
-      this.notificacion.fire({
-        title: 'Error',
-        text: mensaje,
-        icon: 'error'
-      });
-    }
 
 }

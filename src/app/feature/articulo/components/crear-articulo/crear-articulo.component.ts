@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticuloService } from '../../shared/service/articulo.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { IAlertaService } from '@core/services/alerta.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
@@ -14,18 +14,14 @@ const numericNumberReg= '^-?[0-9]\\d*(\\.\\d{1,2})?$';
 export class CrearArticuloComponent implements OnInit {
   articuloForm: FormGroup;
 
-  notificacion = Swal.mixin({
-    toast: true,
-    position: 'center'
-  });
-
-  constructor(protected articuloServices: ArticuloService) { }
+  constructor(protected articuloServices: ArticuloService, private alerta: IAlertaService ) { }
 
   ngOnInit() {
     this.construirFormularioArticulo();
   }
 
   crear() {
+    /*
     this.articuloServices.guardar(this.articuloForm.value).subscribe(
       data => {if (data){
         this.success();
@@ -33,6 +29,14 @@ export class CrearArticuloComponent implements OnInit {
       }},
       error => this.mostrarError(error.error.mensaje)
     );
+    */
+    this.articuloServices.guardar(this.articuloForm.value).subscribe(
+      data => {if (data){
+        this.alerta.exito("Se ha creado el artículo");
+        this.articuloForm.reset();
+      }}
+    );
+
   }
 
   private construirFormularioArticulo() {
@@ -43,21 +47,5 @@ export class CrearArticuloComponent implements OnInit {
       precio: new FormControl('', [Validators.required, Validators.pattern(numericNumberReg)])
     });
   }
-
-  success(){
-    this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha creado el artículo',
-      icon: 'success'
-    });
-  }
-
-    mostrarError(mensaje){
-      this.notificacion.fire({
-        title: 'Error',
-        text: mensaje,
-        icon: 'error'
-      });
-    }
 
 }

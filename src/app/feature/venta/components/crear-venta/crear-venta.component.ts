@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { VentaService } from '@venta/shared/service/venta.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
-
-import Swal from 'sweetalert2';
+import { IAlertaService } from '@core/services/alerta.service';
 
 @Component({
   selector: 'app-crear-venta',
@@ -23,15 +22,9 @@ export class CrearVentaComponent implements OnInit {
   ventaForm: FormGroup;
 
   constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute,
-    protected usuarioService: UsuarioService, private router: Router) {
+    protected usuarioService: UsuarioService, private router: Router, protected alert: IAlertaService) {
     this.getIdArticulo = Number(this.activeRouter.snapshot.paramMap.get('id'));
   }
-
-  notificacion = Swal.mixin({
-    toast: true,
-    position: 'center'
-  });
-
 
   ngOnInit() {
     this.construirFormularioVenta();
@@ -50,7 +43,7 @@ export class CrearVentaComponent implements OnInit {
     this.ventaServices.guardar(this.ventaForm.value).subscribe(
       data => {
         if (data) {
-          this.success();
+          this.alert.exito('Se ha creado una venta');
           this.ventaForm.reset();
           this.router.navigateByUrl('/');
         }
@@ -64,22 +57,6 @@ export class CrearVentaComponent implements OnInit {
       unidadVenta: new FormControl('', [Validators.required]),
       idArticulo: new FormControl('', [Validators.required]),
       nombreUsuario: new FormControl('', [Validators.required]),
-    });
-  }
-
-  success() {
-    this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha creado una venta',
-      icon: 'success'
-    });
-  }
-
-  mostrarError(mensaje) {
-    this.notificacion.fire({
-      title: 'Error',
-      text: mensaje,
-      icon: 'error'
     });
   }
 }

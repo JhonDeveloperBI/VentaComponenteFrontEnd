@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { of } from 'rxjs';
 
@@ -65,6 +65,8 @@ describe('BorrarUsuarioComponent', () => {
     });
   });
 
+  /*
+
   it('Debe mostrar mensaje de error ', (done) => {
     component.mostrarError('error');
 
@@ -83,5 +85,6 @@ describe('BorrarUsuarioComponent', () => {
       done();
     });
   });
+  */
 
 });

@@ -11,7 +11,7 @@
           class="form-control" formControlName="nombreArticulo">
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-sm-2">
         <label>Unidades:</label>
@@ -21,7 +21,7 @@
           class="form-control" formControlName="unidades">
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-sm-2">
         <label>Precio:</label>
@@ -31,10 +31,10 @@
           class="form-control" formControlName="precio">
       </div>
     </div>
-  
-    <button id="actualizar" class="btn btn-primary btn-block mt-4">
+
+    <button [disabled]="!articuloForm.valid" id="actualizar" class="btn btn-primary btn-block mt-4">
       Actualizar Artículo
     </button>
-  
+
   </form>
-  
+
