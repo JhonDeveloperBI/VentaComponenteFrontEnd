@@ -12,16 +12,16 @@ import {  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Usuario } from '@usuario/shared/model/usuario';
 
 import { UsuarioComponent } from '../usuario/usuario.component';
-import { of } from 'rxjs';
 import { IAlertaService } from '@core/services/alerta.service';
 import { AlertaServiceMock } from '@core/services/alerta.service-mock';
+import { UsuarioServiceStub } from '@usuario/shared/service/usuario.service-stub';
 
 
 describe('BorrarUsuarioComponent', () => {
   let component: BorrarUsuarioComponent;
   let fixture: ComponentFixture<BorrarUsuarioComponent>;
-  let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
+  let usuarioService: UsuarioServiceStub;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -33,6 +33,7 @@ describe('BorrarUsuarioComponent', () => {
       errorInesperado: jasmine.createSpy('errorInesperado'),
       exito: jasmine.createSpy('Se ha eliminado el usuario')
     };
+    usuarioService = new UsuarioServiceStub();
     TestBed.configureTestingModule({
       declarations: [ BorrarUsuarioComponent ],
       imports: [
@@ -55,39 +56,28 @@ describe('BorrarUsuarioComponent', () => {
     fixture = TestBed.createComponent(BorrarUsuarioComponent);
     component = fixture.componentInstance;
     component.usuario = new Usuario(1, 'usuario test', '2022-04-22 00:00:00', '123_pass');
-    usuarioService = TestBed.inject(UsuarioService);
-    spyOn(usuarioService, 'eliminar').and.returnValue(
-     of( true )
-    );
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-/*
-  it('Debe borrar un usuario', (done) => {
+
+  it('Debe mostrar mensaje de confirmacion', () => {
     component.borrarUsuario();
-    component.success();
-    setTimeout(() => {
-    expect(Swal.getTitle().textContent).toEqual('Esta seguro de eliminar este usuario?');
-    Swal.clickConfirm();
-    done();
-    });
-  });
-*/
-  /*
-
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError('error');
-
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
+    expect(alertaSpy.confirmacion).toHaveBeenCalled();
   });
 
+
+
+  it('Debe mostrar mensaje de error ', () => {
+    usuarioService.error = { error: { nombreExcepcion: 'Excepcion' } };
+    component.borrarUsuario();
+
+    expect(alertaSpy.errorInesperado).toHaveBeenCalled();
+
+  });
+/*
   it('Debe mostrar mensaje de exito ', (done) => {
     component.success();
     setTimeout(() => {

@@ -8,7 +8,7 @@ import { IAlertaService } from '@core/services/alerta.service';
 import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
-import { of } from 'rxjs';
+import { UsuarioServiceStub } from '@usuario/shared/service/usuario.service-stub';
 import { UsuarioComponent } from '../usuario/usuario.component';
 
 import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
@@ -16,8 +16,8 @@ import { ActualizarUsuarioComponent } from './actualizar-usuario.component';
 describe('ActualizarUsuarioComponent', () => {
   let component: ActualizarUsuarioComponent;
   let fixture: ComponentFixture<ActualizarUsuarioComponent>;
-  let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
+  let usuarioService: UsuarioServiceStub;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -29,6 +29,9 @@ describe('ActualizarUsuarioComponent', () => {
       errorInesperado: jasmine.createSpy('error Inesperado'),
       exito: jasmine.createSpy('Se ha actualizado el usuario')
     };
+
+    usuarioService = new UsuarioServiceStub();
+
     await TestBed.configureTestingModule({
       declarations: [ActualizarUsuarioComponent],
       imports: [
@@ -42,7 +45,8 @@ describe('ActualizarUsuarioComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [UsuarioService, HttpService,
-        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }]
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) },
+        { provide: UsuarioService, useValue: usuarioService }]
     })
       .compileComponents();
   });
@@ -50,7 +54,6 @@ describe('ActualizarUsuarioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ActualizarUsuarioComponent);
     component = fixture.componentInstance;
-    usuarioService = TestBed.inject(UsuarioService);
     fixture.detectChanges();
   });
 
@@ -59,11 +62,7 @@ describe('ActualizarUsuarioComponent', () => {
   });
 
 
-  it('actualizando usuario', () => {
-
-    spyOn(usuarioService, 'actualizar').and.returnValue(
-      of(true)
-    );
+  it('Deberia mostrar mensaje de exito', () => {
 
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
@@ -80,8 +79,8 @@ describe('ActualizarUsuarioComponent', () => {
 
   });
 
-  it('actualizando usuario con error', () => {
-    spyOn(usuarioService, 'actualizar').and.throwError('error Inesperado');
+  it('Deberia mostrar mensaje de error', () => {
+    usuarioService.error = { error: { nombreExcepcion: 'error Inesperado' } };
 
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
@@ -90,7 +89,9 @@ describe('ActualizarUsuarioComponent', () => {
     expect(component.usuarioForm.valid).toBeTruthy();
     expect(component.usuarioForm).not.toBeNull();
     expect(component.usuarioForm.valid).toBeTruthy();
+
     component.actualizar();
+
 
     expect(alertaSpy.errorInesperado).toHaveBeenCalled();
   });

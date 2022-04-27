@@ -1,21 +1,21 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
 import { CrearUsuarioComponent } from './crear-usuario.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UsuarioService } from '../../shared/service/usuario.service';
+import { UsuarioService, UsuarioServiceImpl } from '../../shared/service/usuario.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IAlertaService } from '@core/services/alerta.service';
 import { AlertaServiceMock } from '@core/services/alerta.service-mock';
+import { UsuarioServiceStub } from '@usuario/shared/service/usuario.service-stub';
 
 describe('CrearUsuarioComponent', () => {
   let component: CrearUsuarioComponent;
   let fixture: ComponentFixture<CrearUsuarioComponent>;
-  let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
+  let usuarioService: UsuarioServiceStub;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -27,6 +27,8 @@ describe('CrearUsuarioComponent', () => {
       errorInesperado: jasmine.createSpy('errorInesperado'),
       exito: jasmine.createSpy('Se ha creado el usuario')
     };
+    usuarioService = new UsuarioServiceStub();
+
     TestBed.configureTestingModule({
       declarations: [ CrearUsuarioComponent ],
       imports: [
@@ -36,8 +38,8 @@ describe('CrearUsuarioComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [UsuarioService, HttpService,
-        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
+      providers: [ HttpService, {provide: UsuarioService, useClass: UsuarioServiceImpl},
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }]
     })
     .compileComponents();
   }));
@@ -45,10 +47,7 @@ describe('CrearUsuarioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearUsuarioComponent);
     component = fixture.componentInstance;
-    usuarioService = TestBed.inject(UsuarioService);
-    spyOn(usuarioService, 'guardar').and.returnValue(
-      of(true)
-    );
+
     fixture.detectChanges();
   });
 
@@ -60,7 +59,8 @@ describe('CrearUsuarioComponent', () => {
     expect(component.usuarioForm.valid).toBeFalsy();
   });
 
-  it('Registrando usuario', () => {
+  it('Debe mostrar mensaje de exito al registrar un  usuario', () => {
+
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.nombre.setValue('usuario 1');
     component.usuarioForm.controls.clave.setValue('123_passwor');
@@ -70,6 +70,19 @@ describe('CrearUsuarioComponent', () => {
     component.crear();
     expect(alertaSpy.exito).toHaveBeenCalled();
   });
+
+  it('Debe mostrar mensaje de error', () => {
+    usuarioService.error = { error: { nombreExcepcion: 'Excepcion' } };
+    expect(component.usuarioForm.valid).toBeFalsy();
+    component.usuarioForm.controls.nombre.setValue('usuario 1');
+    component.usuarioForm.controls.clave.setValue('123_passwor');
+    expect(component.usuarioForm.valid).toBeTruthy();
+    expect(component.usuarioForm).not.toBeNull();
+
+    component.crear();
+    expect(alertaSpy.errorInesperado).toHaveBeenCalled();
+  });
+
 
   /*
   it('Debe mostrar mensaje de error ', (done) => {

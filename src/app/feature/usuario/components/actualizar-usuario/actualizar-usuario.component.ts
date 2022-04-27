@@ -38,6 +38,7 @@ export class ActualizarUsuarioComponent implements OnInit {
   }
 
   actualizar() {
+    try{
     this.usuarioService.actualizar(this.getIdUsuario, this.usuarioForm.value).subscribe(
       data => { if(data) {
         this.alert.exito(mensajeActualizacionUsuario);
@@ -45,6 +46,9 @@ export class ActualizarUsuarioComponent implements OnInit {
       }
       }
     );
+    } catch(e){
+      console.log("erro"+e)
+    }
   }
 
   private construirFormularioUsuario() {

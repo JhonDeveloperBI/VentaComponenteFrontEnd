@@ -43,7 +43,7 @@ describe('UsuarioService', () => {
   it('deberia crear un usuario', () => {
     const dummyUsuarios = new Usuario(1, 'usuario1', '123aaa', '2020-01-04 00:00:00');
     service.guardar(dummyUsuarios).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(1);
     });
     const req = httpMock.expectOne(apiEndpointUsuarios);
     expect(req.request.method).toBe('POST');
@@ -53,7 +53,7 @@ describe('UsuarioService', () => {
   it('deberia actualizar un usuario', () => {
     const dummyUsuario = new Usuario(1, 'usuario1', '123aaa', '2020-01-04 00:00:00');
     service.actualizar(1, dummyUsuario).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(2);
     });
     const req = httpMock.expectOne(`${apiEndpointUsuarios}/1`);
     expect(req.request.method).toBe('PUT');
@@ -63,7 +63,7 @@ describe('UsuarioService', () => {
   it('deberia eliminar un usuario', () => {
     const dummyUsuarios = new Usuario(1, 'usuario1', '123', '2020-01-05 00:00:00');
     service.eliminar(dummyUsuarios).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta).toEqual(1);
     });
     const req = httpMock.expectOne(`${apiEndpointUsuarios}/1`);
     expect(req.request.method).toBe('DELETE');

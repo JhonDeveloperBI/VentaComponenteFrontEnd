@@ -7,7 +7,7 @@ import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ActualizarUsuarioComponent } from './components/actualizar-usuario/actualizar-usuario.component';
 import { SharedModule } from '@shared/shared.module';
-import { UsuarioService } from './shared/service/usuario.service';
+import { UsuarioService, UsuarioServiceImpl } from './shared/service/usuario.service';
 import { AlertaService, IAlertaService } from '@core/services/alerta.service';
 
 
@@ -24,6 +24,7 @@ import { AlertaService, IAlertaService } from '@core/services/alerta.service';
     UsuarioRoutingModule,
     SharedModule
   ],
-  providers: [UsuarioService,{provide: IAlertaService, useClass: AlertaService}]
+  providers: [{provide: UsuarioService, useClass: UsuarioServiceImpl},
+    {provide: IAlertaService, useClass: AlertaService}]
 })
 export class UsuarioModule { }
