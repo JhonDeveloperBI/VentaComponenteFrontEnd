@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IAlertaService } from '@core/services/alerta.service';
 import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { HttpService } from '@core/services/http.service';
+import { Usuario } from '@usuario/shared/model/usuario';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
 import { of } from 'rxjs';
 import { UsuarioComponent } from '../usuario/usuario.component';
@@ -18,6 +19,7 @@ describe('ActualizarUsuarioComponent', () => {
   let fixture: ComponentFixture<ActualizarUsuarioComponent>;
   let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
+  const listaUsuarios: Usuario[] = [new Usuario(1, 'test 1', '2022-04-05', '1222'), new Usuario(2, 'test 2', '2022-04-05', '12a22')];
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -59,6 +61,21 @@ describe('ActualizarUsuarioComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+
+  it('Debe consultar informacion del usuario', () => {
+    spyOn(usuarioService, 'consultar').and.returnValue(
+      of( listaUsuarios )
+    );
+    component.getIdUsuario = 1;
+    component.ngOnInit();
+
+    component.usuarioForm.controls['id'].setValue(1);
+    component.usuarioForm.controls['nombre'].setValue('test 1');
+    component.usuarioForm.controls['clave'].setValue('1222');
+
+    expect(component.usuarioForm.valid).toBe(true);
   });
 
 

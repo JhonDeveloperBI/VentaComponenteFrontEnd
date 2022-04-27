@@ -69,7 +69,11 @@ describe('ActualizarArticuloComponent', () => {
     component.getIdArticulo = 1;
     component.ngOnInit();
 
-    expect(component.articuloForm.valid).toBeFalse();
+    component.articuloForm.controls['nombreArticulo'].setValue('Producto 1');
+    component.articuloForm.controls['precio'].setValue(1000);
+    component.articuloForm.controls['unidades'].setValue(2);
+
+    expect(component.articuloForm.valid).toBe(true);
   });
 
   it('Debe actualizar componente electronico', () => {
