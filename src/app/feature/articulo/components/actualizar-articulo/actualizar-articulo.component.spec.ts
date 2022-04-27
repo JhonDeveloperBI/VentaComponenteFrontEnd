@@ -76,6 +76,20 @@ describe('ActualizarArticuloComponent', () => {
     expect(component.articuloForm.valid).toBe(true);
   });
 
+  it('Debe mostrar el formulario invalido', () => {
+    spyOn(articuloService, 'consultar').and.returnValue(
+      of( listaArticulos )
+    );
+    component.getIdArticulo = 10;
+    component.ngOnInit();
+
+    component.articuloForm.controls['nombreArticulo'].setValue('');
+    component.articuloForm.controls['precio'].setValue('');
+    component.articuloForm.controls['unidades'].setValue('');
+
+    expect(component.articuloForm.invalid).toBe(true);
+  });
+
   it('Debe actualizar componente electronico', () => {
     spyOn(articuloService, 'actualizar').and.returnValue(
       of(true)

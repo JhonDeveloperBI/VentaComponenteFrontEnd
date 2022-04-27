@@ -78,6 +78,19 @@ describe('ActualizarUsuarioComponent', () => {
     expect(component.usuarioForm.valid).toBe(true);
   });
 
+  it('Debe mostrar el formulario invalido', () => {
+    spyOn(usuarioService, 'consultar').and.returnValue(
+      of( listaUsuarios )
+    );
+    component.getIdUsuario = 10;
+    component.ngOnInit();
+
+    component.usuarioForm.controls['id'].setValue('');
+    component.usuarioForm.controls['nombre'].setValue('');
+    component.usuarioForm.controls['clave'].setValue('');
+
+    expect(component.usuarioForm.invalid).toBe(true);
+  });
 
   it('Deberia actualizar un usuario', () => {
 
