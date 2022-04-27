@@ -21,5 +21,17 @@ describe('workspace-project Venta', () => {
         expect(venta.mostroTabla()).toBe(true);
     });
 
+
+    it('Deberia crear una venta de un artículo', () => {
+        page.navigateTo();
+        navBar.clickBotonArticulo();
+        venta.clickBotonListarArticulos();
+        venta.clickBotonCrearVenta();
+        venta.ingresarUnidadVenta(1);
+        venta.clickBotonGuardarVenta();
+
+        expect(venta.mostroNotificacionInformativa()).toBe(true);
+    });
+
 });
 

@@ -40,6 +40,7 @@ describe('workspace-project Articulo', () => {
         articulo.ingresarUnidadesArticulo(UNIDADES_ARTICULO);
         articulo.ingresarPrecioArticulo(PRECIO_ARTICULO);
         articulo.clickBotonGuardarArticulo();
+
         expect(articulo.mostroNotificacionError()).toBe(true);
     });
 
@@ -72,24 +73,16 @@ describe('workspace-project Articulo', () => {
 
     });
 
-    it('Deberia crear una venta de un artículo', () => {
-        page.navigateTo();
-        navBar.clickBotonArticulo();
-        articulo.clickBotonListarArticulos();
-        articulo.clickBotonCrearVenta();
-        articulo.ingresarUnidadVenta(1);
-        articulo.clickBotonGuardarVenta();
-
-        expect(articulo.mostroNotificacionInformativa()).toBe(true);
-    });
 
     it('Deberia borrrar el artículo', () => {
         page.navigateTo();
         navBar.clickBotonArticulo();
         articulo.clickBotonListarArticulos();
         articulo.clickBotonBorrar();
-        articulo.clickBotonConfirmacion();
+        articulo.clickBotonConfirmacionSi();
         expect(articulo.mostroNotificacionInformativa()).toBe(true);
+
     });
+
 });
 

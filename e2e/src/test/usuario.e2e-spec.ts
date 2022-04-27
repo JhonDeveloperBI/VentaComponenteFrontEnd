@@ -77,8 +77,7 @@ describe('workspace-project Usuario', () => {
         usuario.clickBotonListarUsuarios();
 
         usuario.clickBotonBorrar();
-        usuario.clickBotonConfirmacion();
-
+        usuario.clickBotonConfirmacionSi();
         expect(usuario.mostroNotificacionInformativa()).toBe(true);
 
     });

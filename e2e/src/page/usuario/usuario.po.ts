@@ -11,13 +11,18 @@ export class UsuarioPage {
     private botonConfirmacion = element(by.xpath('/html/body/div/div/div[7]/button[1]'));
     private botonActualizar = element(by.className('123_pass'));
     private botonActualizarUsuario = element(by.xpath('//*[@id="actualizar"]'));
+    private botonConfirmacionSi = element(by.css('.swal2-confirm'));
 
     async mostroNotificacionInformativa(): Promise<boolean> {
-        return element(by.css( '.swal2-popup.swal2-toast.swal2-icon-success.swal2-show')).isPresent();
+        return element(by.css('.swal2-popup.swal2-modal.swal2-icon-success.swal2-show')).isPresent();
     }
 
     async mostroNotificacionError(): Promise<boolean>{
-        return element(by.css( '.swal2-icon.swal2-error.swal2-icon-show')).isPresent();
+        return element(by.css('.swal2-popup.swal2-modal.swal2-icon-error.swal2-show')).isPresent();
+    }
+
+    async mostroNotificacionConfirmacion(): Promise<boolean> {
+        return element(by.css('.swal2-popup.swal2-modal.swal2-icon-warning.swal2-show')).isPresent();
     }
 
     async clickBotonCrearUsuarios() {
@@ -66,6 +71,10 @@ export class UsuarioPage {
 
     async clickBotonGuardar() {
         await this.botonGuardarArticulo.click();
+    }
+
+    async clickBotonConfirmacionSi(){
+        await this.botonConfirmacionSi.click();
     }
 }
 
