@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <button id="guardar" class="btn btn-primary btn-block mt-4">
+  <button [disabled]="!articuloForm.valid" id="guardar" class="btn btn-primary btn-block mt-4" >
     Guardar Artículo
   </button>
 

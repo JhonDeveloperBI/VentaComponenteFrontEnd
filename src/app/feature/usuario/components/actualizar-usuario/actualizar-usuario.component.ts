@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IAlertaService } from '@core/services/alerta.service';
+
+const id = 'id';
+const inputNombre = 'nombre';
+const inputClave = 'clave';
+const mensajeActualizacionUsuario = 'Se ha actualizado el usuario';
 
 @Component({
   selector: 'app-actualizar-usuario',
@@ -11,64 +16,43 @@ import { Router,ActivatedRoute } from '@angular/router';
 export class ActualizarUsuarioComponent implements OnInit {
 
   getIdUsuario: number;
-  usuarios : any = []; //NOSONAR
-
-
-  notificacion = Swal.mixin({
-    toast: true,
-    position: 'center'
-  });
+  usuarios: any = []; // NOSONAR
 
   usuarioForm: FormGroup;
-  constructor(protected usuarioService: UsuarioService, private activeRouter: ActivatedRoute, private router: Router) {
-    this.getIdUsuario = Number(this.activeRouter.snapshot.paramMap.get('id'));  
-   }
+  constructor(protected usuarioService: UsuarioService, private activeRouter: ActivatedRoute, private router: Router,
+              protected alert: IAlertaService) {
+    this.getIdUsuario = Number(this.activeRouter.snapshot.paramMap.get(id));
+  }
 
   ngOnInit() {
     this.usuarioService.consultar().subscribe(
-        (data : any) =>{ //NOSONAR
+        (data: any) => { // NOSONAR
            this.usuarios = data.map(u => u);
-           let usuarioFilter = this.usuarios.filter(u => u.id = this.getIdUsuario );
-           this.usuarioForm.controls['id'].setValue(usuarioFilter[0]?.id);
-           this.usuarioForm.controls['nombre'].setValue(usuarioFilter[0]?.nombre);
-           this.usuarioForm.controls['clave'].setValue(usuarioFilter[0]?.clave);
+           const usuarioFilter = this.usuarios.filter(u => Number(u.id) === Number(this.getIdUsuario) )[0];
+           this.usuarioForm.controls[id].setValue(usuarioFilter?.id);
+           this.usuarioForm.controls[inputNombre].setValue(usuarioFilter?.nombre);
+           this.usuarioForm.controls[inputClave].setValue(usuarioFilter?.clave);
         }
-      ); 
-    
+      );
     this.construirFormularioUsuario();
   }
 
   actualizar() {
-    this.usuarioService.actualizar(this.getIdUsuario,this.usuarioForm.value).subscribe(
-      data => {if (data){ //NOSONAR
-      }},
-      error => this.mostrarError(error.error.mensaje)
+    this.usuarioService.actualizar(this.getIdUsuario, this.usuarioForm.value).subscribe(
+      data => { if (data) {
+        this.alert.exito(mensajeActualizacionUsuario);
+        this.router.navigateByUrl('/usuario');
+      }
+      }
     );
-    this.success();
-     this.router.navigateByUrl('/usuario');
   }
 
   private construirFormularioUsuario() {
     this.usuarioForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
-      id:new FormControl('', [Validators.required]),
+      id: new FormControl('', [Validators.required]),
       clave: new FormControl('', [Validators.required])
     });
   }
 
-  success(){
-    this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha actualizado el usuario',
-      icon: 'success'
-    });
-  }
-
-    mostrarError(mensaje){
-      this.notificacion.fire({
-        title: 'Error',
-        text: mensaje,
-        icon: 'error'
-      });
-    }
 }

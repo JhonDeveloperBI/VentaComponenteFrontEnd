@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { IAlertaService } from '@core/services/alerta.service';
+
+
+const mensajeExitoUsuario = 'Se ha creado el usuario';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -9,13 +12,10 @@ import Swal from 'sweetalert2';
 })
 export class CrearUsuarioComponent implements OnInit {
 
-  notificacion = Swal.mixin({
-    toast: true,
-    position: 'center'
-  });
+
 
   usuarioForm: FormGroup;
-  constructor(protected usuarioServices: UsuarioService) { }
+  constructor(protected usuarioServices: UsuarioService, protected alert: IAlertaService) { }
 
   ngOnInit() {
     this.construirFormularioUsuario();
@@ -24,10 +24,10 @@ export class CrearUsuarioComponent implements OnInit {
   crear() {
     this.usuarioServices.guardar(this.usuarioForm.value).subscribe(
       data => {if (data){
-        this.success();
+        this.alert.exito(mensajeExitoUsuario);
         this.usuarioForm.reset();
       }},
-      error => this.mostrarError(error.error.mensaje)
+      error => this.alert.errorInesperado(error.error.mensaje)
     );
   }
 
@@ -38,19 +38,5 @@ export class CrearUsuarioComponent implements OnInit {
                                                             });
   }
 
-  success(){
-    this.notificacion.fire({
-      title: 'Éxito',
-      text: 'Se ha creado el usuario',
-      icon: 'success'
-    });
-  }
 
-    mostrarError(mensaje){
-      this.notificacion.fire({
-        title: 'Error',
-        text: mensaje,
-        icon: 'error'
-      });
-    }
 }

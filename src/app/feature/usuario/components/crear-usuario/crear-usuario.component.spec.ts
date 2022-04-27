@@ -8,17 +8,25 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 
 describe('CrearUsuarioComponent', () => {
   let component: CrearUsuarioComponent;
   let fixture: ComponentFixture<CrearUsuarioComponent>;
   let usuarioService: UsuarioService;
+  let alertaSpy: IAlertaService;
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
+    alertaSpy = {
+      informativa: jasmine.createSpy('informativa'),
+      confirmacion: null,
+      errorInesperado: jasmine.createSpy('errorInesperado'),
+      exito: jasmine.createSpy('Se ha creado el usuario')
+    };
     TestBed.configureTestingModule({
       declarations: [ CrearUsuarioComponent ],
       imports: [
@@ -28,7 +36,8 @@ describe('CrearUsuarioComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [UsuarioService, HttpService],
+      providers: [UsuarioService, HttpService,
+        { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
     })
     .compileComponents();
   }));
@@ -59,18 +68,7 @@ describe('CrearUsuarioComponent', () => {
     expect(component.usuarioForm).not.toBeNull();
 
     component.crear();
-        
+    expect(alertaSpy.exito).toHaveBeenCalled();
   });
 
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError("error");
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-
-
-  
 });

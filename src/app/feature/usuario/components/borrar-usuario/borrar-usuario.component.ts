@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../../shared/service/usuario.service';
 import { Usuario } from '@usuario/shared/model/usuario';
 import Swal from 'sweetalert2';
+import { IAlertaService } from '@core/services/alerta.service';
+
+const mensajePreguntaUsuario = 'Esta seguro de eliminar este usuario?';
+const mensajeConfirmacionBorradoUsuario = 'Se ha eliminado el usuario';
 
 @Component({
   selector: 'app-borrar-usuario',
@@ -16,58 +20,35 @@ export class BorrarUsuarioComponent implements OnInit {
   });
 
   @Input()
-  usuario:Usuario;
+  usuario: Usuario;
 
-  constructor(protected usuarioServices: UsuarioService, private router: Router) { }
+  constructor(protected usuarioServices: UsuarioService, private router: Router, protected alert: IAlertaService) { }
 
   ngOnInit() {
   }
 
-  borrarUsuario() { 
+  borrarUsuario() {
     this.success();
   }
 
 
-  success(){
-    this.notificacion.fire({
-      title: 'Esta seguro de eliminar este usuario?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+  success() {
 
-        this.usuarioServices.eliminar(this.usuario).subscribe(
-          data => {if (data){ //NOSONAR
-          }},
-          error => this.mostrarError(error.error.mensaje)
-        );
-
-        this.mostrarMensaje('Se ha eliminado el usuario');
-
-        this.router.navigateByUrl('/usuario');
+    this.alert.confirmacion(mensajePreguntaUsuario).subscribe(
+      confirmado => {
+        if (confirmado.confirmado) {
+          this.usuarioServices.eliminar(this.usuario).subscribe(
+            data => {
+              if (data) {
+                this.alert.exito(mensajeConfirmacionBorradoUsuario);
+                this.router.navigateByUrl('/usuario');
+              }
+            }
+          );
+        }
       }
-    });
-
-  
+    );
   }
 
-    mostrarMensaje(mensaje){
-      this.notificacion.fire({
-        title: 'Éxito',
-        text: mensaje,
-        icon: 'success'
-      });
-    }
-
-    mostrarError(mensaje){
-      this.notificacion.fire({
-        title: 'Error',
-        text: mensaje,
-        icon: 'error'
-      });
-    }
 
 }

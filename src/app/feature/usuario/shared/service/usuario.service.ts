@@ -23,8 +23,8 @@ export class UsuarioService {
                                                  this.http.optsName('eliminar usuario'));
   }
 
-  public actualizar(id:number, usuario:Usuario){
-    return this.http.doUpdate(`${environment.endpoint}/usuarios/${id}`,usuario,
+  public actualizar(id: number, usuario: Usuario){
+    return this.http.doUpdate(`${environment.endpoint}/usuarios/${id}`, usuario,
                                                   this.http.optsName('actualizar usuario'));
   }
 }

@@ -1,15 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
+import { IAlertaService } from '@core/services/alerta.service';
 import { environment } from '../../../environments/environment';
 import { HTTP_ERRORES_CODIGO } from './http-codigo-error';
 
 @Injectable()
 export class ManejadorError implements ErrorHandler {
-  constructor() {}
+  constructor(protected alert: IAlertaService) {}
 
   handleError(error: string | Error): void {
     const mensajeError = this.mensajePorDefecto(error);
     this.imprimirErrorConsola(mensajeError);
+    this.imprimirErrorPantalla(mensajeError);
   }
 
   private mensajePorDefecto(error) {
@@ -32,6 +34,12 @@ export class ManejadorError implements ErrorHandler {
     };
     if (!environment.production) {
       window.console.error('Error inesperado:\n', respuesta);
+    }
+  }
+
+  private imprimirErrorPantalla(mensaje): void{
+    if (mensaje.error){
+     this.alert.errorInesperado(mensaje.error.mensaje);
     }
   }
 

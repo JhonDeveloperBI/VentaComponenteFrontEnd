@@ -3,12 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { CrearArticuloComponent } from './components/crear-articulo/crear-articulo.component';
 import { ListarArticuloComponent } from './components/listar-articulo/listar-articulo.component';
 import { BorrarArticuloComponent } from './components/borrar-articulo/borrar-articulo.component';
-import { CrearVentaArticuloComponent } from './components/crear-venta-articulo/crear-venta-articulo.component';
 import { ArticuloComponent } from './components/articulo/articulo.component';
 import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
 
 
-const routes: Routes = [ //NOSONAR
+const routes: Routes = [
   {
     path: '',
     component: ArticuloComponent,
@@ -16,10 +15,6 @@ const routes: Routes = [ //NOSONAR
       {
         path: 'crear',
         component: CrearArticuloComponent
-      },
-      {
-        path: 'crearventa/:id',
-        component: CrearVentaArticuloComponent
       },
       {
         path: 'listar',
@@ -31,7 +26,7 @@ const routes: Routes = [ //NOSONAR
       },
       {
         path: 'borrar',
-        component: BorrarArticuloComponent  
+        component: BorrarArticuloComponent
       }
     ]
   }
@@ -42,3 +37,4 @@ const routes: Routes = [ //NOSONAR
   exports: [RouterModule]
 })
 export class ArticuloRoutingModule { }
+
