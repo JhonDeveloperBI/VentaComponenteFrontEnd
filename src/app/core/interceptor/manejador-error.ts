@@ -38,7 +38,7 @@ export class ManejadorError implements ErrorHandler {
   }
 
   private imprimirErrorPantalla(mensaje): void{
-    if(mensaje.error){
+    if (mensaje.error){
      this.alert.errorInesperado(mensaje.error.mensaje);
     }
   }

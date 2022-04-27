@@ -66,10 +66,10 @@ describe('BorrarArticuloComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Debe borrar un articulo ', () =>{
+  it('Debe borrar un articulo ', () => {
     component.borrarArticulo();
     expect(alertaSpy.confirmacion).toHaveBeenCalled();
-  })
+  });
 
 });
 

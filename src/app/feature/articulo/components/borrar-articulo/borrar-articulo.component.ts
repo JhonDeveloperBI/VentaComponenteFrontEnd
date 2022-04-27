@@ -18,7 +18,7 @@ export class BorrarArticuloComponent implements OnInit {
   articulo: Articulo;
 
   constructor(protected articuloService: ArticuloService, private router: Router,
-    protected alert: IAlertaService) { }
+              protected alert: IAlertaService) { }
 
   ngOnInit() {
   }
@@ -29,8 +29,8 @@ export class BorrarArticuloComponent implements OnInit {
 
   success() {
     this.alert.confirmacion(mensajeEliminarArticulo).subscribe(
-      data => {
-        if (data.confirmado) {
+      confirm => {
+        if (confirm.confirmado) {
           this.articuloService.eliminar(this.articulo).subscribe(
             data => {
               if (data) {
@@ -38,10 +38,8 @@ export class BorrarArticuloComponent implements OnInit {
                 this.router.navigateByUrl('/articulo');
               }
             });
-
         }
       });
   }
-
 
 }

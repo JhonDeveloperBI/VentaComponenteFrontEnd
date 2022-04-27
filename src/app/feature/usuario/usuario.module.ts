@@ -24,6 +24,6 @@ import { AlertaService, IAlertaService } from '@core/services/alerta.service';
     UsuarioRoutingModule,
     SharedModule
   ],
-  providers: [UsuarioService,{provide: IAlertaService, useClass: AlertaService}]
+  providers: [UsuarioService, {provide: IAlertaService, useClass: AlertaService}]
 })
 export class UsuarioModule { }

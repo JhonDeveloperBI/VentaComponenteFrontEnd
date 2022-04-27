@@ -20,6 +20,6 @@ import { AlertaService, IAlertaService } from '@core/services/alerta.service';
     VentaRoutingModule,
     SharedModule
   ],
-  providers: [VentaService,{provide: IAlertaService, useClass: AlertaService}]
+  providers: [VentaService, {provide: IAlertaService, useClass: AlertaService}]
 })
 export class VentaModule { }

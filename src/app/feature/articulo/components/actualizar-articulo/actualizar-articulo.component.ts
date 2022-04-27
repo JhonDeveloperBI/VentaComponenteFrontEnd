@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticuloService } from '@articulo/shared/service/articulo.service';
 import { IAlertaService } from '@core/services/alerta.service';
 
-const numericNumberReg= '^-?[0-9]\\d*(\\.\\d{1,2})?$';
+const numericNumberReg = '^-?[0-9]\\d*(\\.\\d{1,2})?$';
 const inputNombreArticulo = 'nombreArticulo';
 const inputPrecio = 'precio';
 const inputUnidades = 'unidades';
@@ -42,7 +42,7 @@ export class ActualizarArticuloComponent implements OnInit {
   private construirFormularioArticulo() {
     this.articuloForm = new FormGroup({
       nombreArticulo: new FormControl('', [Validators.required]),
-      unidades: new FormControl('',[ Validators.required, Validators.pattern(numericNumberReg)]),
+      unidades: new FormControl('', [ Validators.required, Validators.pattern(numericNumberReg)]),
       precio: new FormControl('', [Validators.required, Validators.pattern(numericNumberReg)])
     });
   }

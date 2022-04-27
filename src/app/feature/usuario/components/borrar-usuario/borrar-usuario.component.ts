@@ -35,8 +35,8 @@ export class BorrarUsuarioComponent implements OnInit {
   success() {
 
     this.alert.confirmacion(mensajePreguntaUsuario).subscribe(
-      data => {
-        if (data.confirmado) {
+      confirmado => {
+        if (confirmado.confirmado) {
           this.usuarioServices.eliminar(this.usuario).subscribe(
             data => {
               if (data) {
@@ -47,7 +47,7 @@ export class BorrarUsuarioComponent implements OnInit {
           );
         }
       }
-    )
+    );
   }
 
 

@@ -23,7 +23,7 @@ export class CrearVentaComponent implements OnInit {
   ventaForm: FormGroup;
 
   constructor(protected ventaServices: VentaService, private activeRouter: ActivatedRoute,
-    protected usuarioService: UsuarioService, private router: Router, protected alert: IAlertaService) {
+              protected usuarioService: UsuarioService, private router: Router, protected alert: IAlertaService) {
     this.getIdArticulo = Number(this.activeRouter.snapshot.paramMap.get(id));
   }
 

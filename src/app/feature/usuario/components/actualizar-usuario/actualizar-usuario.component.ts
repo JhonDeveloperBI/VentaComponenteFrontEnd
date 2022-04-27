@@ -39,7 +39,7 @@ export class ActualizarUsuarioComponent implements OnInit {
 
   actualizar() {
     this.usuarioService.actualizar(this.getIdUsuario, this.usuarioForm.value).subscribe(
-      data => { if(data) {
+      data => { if (data) {
         this.alert.exito(mensajeActualizacionUsuario);
         this.router.navigateByUrl('/usuario');
       }

@@ -10,7 +10,7 @@ export class AlertaServiceMock extends IAlertaService {
 
     exito(mensaje: string): Observable<AccionConfirmado> {
         this.spy.exito(mensaje);
-        return of({ confirmado: this.valorConfirmacion })
+        return of({ confirmado: this.valorConfirmacion });
     }
 
     errorInesperado(mensaje: string): void {
