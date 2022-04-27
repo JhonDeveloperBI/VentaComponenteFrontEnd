@@ -29,7 +29,7 @@ describe('BorrarUsuarioComponent', () => {
   beforeEach(waitForAsync(() => {
     alertaSpy = {
       informativa: jasmine.createSpy('informativa'),
-      confirmacion: null,
+      confirmacion: jasmine.createSpy('mensajePreguntaUsuario'),
       errorInesperado: jasmine.createSpy('errorInesperado'),
       exito: jasmine.createSpy('Se ha eliminado el usuario')
     };
@@ -65,37 +65,26 @@ describe('BorrarUsuarioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-/*
-  it('Debe borrar un usuario', (done) => {
+
+  it('Debe mostrar un mensaje de confirmacion', () => {
     component.borrarUsuario();
     component.success();
+
+    expect(alertaSpy.confirmacion).toHaveBeenCalled();
+
+
+/*
     setTimeout(() => {
     expect(Swal.getTitle().textContent).toEqual('Esta seguro de eliminar este usuario?');
     Swal.clickConfirm();
     done();
     });
-  });
 */
+  });
+
   /*
 
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError('error');
 
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-
-  it('Debe mostrar mensaje de exito ', (done) => {
-    component.success();
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Esta seguro de eliminar este usuario?');
-      Swal.clickConfirm();
-      done();
-    });
-  });
   */
 
 });

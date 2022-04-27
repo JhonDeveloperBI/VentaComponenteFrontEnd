@@ -90,37 +90,4 @@ describe('ActualizarArticuloComponent', () => {
     expect(alertaSpy.exito).toHaveBeenCalled();
 
   });
-/*
-  it('Debe mostrar mensaje de exito cuando se este actualizando', (done) => {
-
-    spyOn(articuloService, 'actualizar').and.callThrough();
-
-    component.actualizarArticulo();
-
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Éxito');
-      Swal.clickConfirm();
-      done();
-    });
-
-  });
-
-  it('Debe mostrar mensaje de error', (done) => {
-    component.mostrarError('error');
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-
-  it('Debe mostrar mensaje de exito ', (done) => {
-    component.success();
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Éxito');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-*/
 });

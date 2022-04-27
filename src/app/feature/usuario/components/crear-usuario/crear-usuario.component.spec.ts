@@ -71,14 +71,4 @@ describe('CrearUsuarioComponent', () => {
     expect(alertaSpy.exito).toHaveBeenCalled();
   });
 
-  /*
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError('error');
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-  */
 });

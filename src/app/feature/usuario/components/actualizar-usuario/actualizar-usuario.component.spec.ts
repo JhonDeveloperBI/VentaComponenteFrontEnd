@@ -51,6 +51,9 @@ describe('ActualizarUsuarioComponent', () => {
     fixture = TestBed.createComponent(ActualizarUsuarioComponent);
     component = fixture.componentInstance;
     usuarioService = TestBed.inject(UsuarioService);
+    spyOn(usuarioService, 'actualizar').and.returnValue(
+      of(1)
+    );
     fixture.detectChanges();
   });
 
@@ -59,11 +62,7 @@ describe('ActualizarUsuarioComponent', () => {
   });
 
 
-  it('actualizando usuario', () => {
-
-    spyOn(usuarioService, 'actualizar').and.returnValue(
-      of(true)
-    );
+  it('Deberia actualizar un usuario', () => {
 
     expect(component.usuarioForm.valid).toBeFalsy();
     component.usuarioForm.controls.id.setValue('1');
@@ -80,38 +79,5 @@ describe('ActualizarUsuarioComponent', () => {
 
   });
 
-  it('actualizando usuario con error', () => {
-    spyOn(usuarioService, 'actualizar').and.throwError('error Inesperado');
 
-    expect(component.usuarioForm.valid).toBeFalsy();
-    component.usuarioForm.controls.id.setValue('1');
-    component.usuarioForm.controls.nombre.setValue('usuario actualizado');
-    component.usuarioForm.controls.clave.setValue('123_passwor');
-    expect(component.usuarioForm.valid).toBeTruthy();
-    expect(component.usuarioForm).not.toBeNull();
-    expect(component.usuarioForm.valid).toBeTruthy();
-    component.actualizar();
-
-    expect(alertaSpy.errorInesperado).toHaveBeenCalled();
-  });
-
-  /*
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError('error');
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-
-  it('Debe mostrar mensaje de exito ', (done) => {
-    component.success();
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Éxito');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-  */
 });

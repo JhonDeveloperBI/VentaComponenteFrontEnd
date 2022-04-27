@@ -68,24 +68,6 @@ describe('CrearVentaComponent', () => {
   });
 
 
-  it('Registrando venta', () => {
-    spyOn(ventaService, 'guardar').and.returnValue(
-      of(true)
-    );
-
-    expect(component.ventaForm.valid).toBeFalsy();
-    component.ventaForm.controls.idArticulo.setValue(1);
-    component.ventaForm.controls.idUsuario.setValue(1);
-    component.ventaForm.controls.nombreUsuario.setValue('usuario nombre');
-    component.ventaForm.controls.unidadVenta.setValue(3);
-    expect(component.ventaForm.valid).toBeTruthy();
-
-    component.crear();
-
-    expect(alertaSpy.exito).toHaveBeenCalled();
-
-  });
-
   it('Debe mostrar el formulario invalido', () => {
     expect(component.ventaForm.valid).toBeFalsy();
     component.ventaForm.controls.idArticulo.setValue(1);
@@ -95,34 +77,23 @@ describe('CrearVentaComponent', () => {
     expect(component.ventaForm.valid).toBeFalse();
 
   });
-/*
-  it('Registrando venta mensaje error', () => {
 
+  it('Debe registrar una venta', () => {
     spyOn(ventaService, 'guardar').and.returnValue(
-      of(null)
+      of(true)
     );
-
-    spyOn(component, 'mostrarError');
-    component.mostrarError('error');
 
     expect(component.ventaForm.valid).toBeFalsy();
     component.ventaForm.controls.idArticulo.setValue(1);
     component.ventaForm.controls.idUsuario.setValue(1);
-    component.ventaForm.controls.nombreUsuario.setValue('usuario nombre');
+    component.ventaForm.controls.nombreUsuario.setValue('usuario');
     component.ventaForm.controls.unidadVenta.setValue(3);
     expect(component.ventaForm.valid).toBeTruthy();
 
     component.crear();
+
+    expect(alertaSpy.exito).toHaveBeenCalled();
+
   });
 
-
-  it('Debe mostrar mensaje de error ', (done) => {
-    component.mostrarError('error');
-    setTimeout(() => {
-      expect(Swal.getTitle().textContent).toEqual('Error');
-      Swal.clickConfirm();
-      done();
-    });
-  });
-*/
 });
