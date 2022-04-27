@@ -78,6 +78,29 @@ describe('CrearVentaComponent', () => {
 
   });
 
+  it('Debe mostrar el formulario valido', () => {
+    component.getIdArticulo = 2;
+    component.ngOnInit();
+
+    component.ventaForm.controls['idUsuario'].setValue(1);
+    component.ventaForm.controls['nombreUsuario'].setValue('test 1');
+    component.ventaForm.controls['unidadVenta'].setValue(10);
+
+
+    expect(component.ventaForm.valid).toBe(true);
+  });
+
+  it('Debe mostrar el formulario invalido', () => {
+    component.ventaForm.controls['idUsuario'].setValue('');
+    component.ventaForm.controls['nombreUsuario'].setValue('');
+    component.ventaForm.controls['unidadVenta'].setValue('');
+    component.ventaForm.controls['idArticulo'].setValue('');
+
+    component.ngOnInit();
+    expect(component.ventaForm.valid).toBe(false);
+
+  });
+
   it('Debe registrar una venta', () => {
     spyOn(ventaService, 'guardar').and.returnValue(
       of(true)
