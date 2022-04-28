@@ -21,6 +21,10 @@ describe('ActualizarArticuloComponent', () => {
   const listaArticulos: Articulo[] = [new Articulo(1, 'Producto 1', 2, 1000), new Articulo(2, 'Producto 2', 10, 1000)];
   let alertaSpy: IAlertaService;
 
+  const inputPrecio = 'precio';
+  const inputUnidades = 'unidades';
+  const inputNombreArticulo = 'nombreArticulo';
+
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
@@ -69,9 +73,9 @@ describe('ActualizarArticuloComponent', () => {
     component.getIdArticulo = 1;
     component.ngOnInit();
 
-    component.articuloForm.controls['nombreArticulo'].setValue('Producto 1');
-    component.articuloForm.controls['precio'].setValue(1000);
-    component.articuloForm.controls['unidades'].setValue(2);
+    component.articuloForm.controls[inputNombreArticulo].setValue('Producto 1');
+    component.articuloForm.controls[inputPrecio].setValue(1000);
+    component.articuloForm.controls[inputUnidades].setValue(2);
 
     expect(component.articuloForm.valid).toBe(true);
   });
@@ -83,9 +87,9 @@ describe('ActualizarArticuloComponent', () => {
     component.getIdArticulo = 10;
     component.ngOnInit();
 
-    component.articuloForm.controls['nombreArticulo'].setValue('');
-    component.articuloForm.controls['precio'].setValue('');
-    component.articuloForm.controls['unidades'].setValue('');
+    component.articuloForm.controls[inputNombreArticulo].setValue('');
+    component.articuloForm.controls[inputPrecio].setValue('');
+    component.articuloForm.controls[inputUnidades].setValue('');
 
     expect(component.articuloForm.invalid).toBe(true);
   });

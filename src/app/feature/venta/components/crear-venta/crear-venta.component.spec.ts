@@ -23,6 +23,11 @@ describe('CrearVentaComponent', () => {
   let usuarios: any[];
   let alertaSpy: IAlertaService;
 
+  const inputIdArticulo = 'idArticulo';
+  const inputIdUsuario = 'idUsuario';
+  const inputnombreUsuario = 'nombreUsuario';
+  const inputUnidadVenta = 'unidadVenta';
+
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
@@ -82,19 +87,19 @@ describe('CrearVentaComponent', () => {
     component.getIdArticulo = 2;
     component.ngOnInit();
 
-    component.ventaForm.controls['idUsuario'].setValue(1);
-    component.ventaForm.controls['nombreUsuario'].setValue('test 1');
-    component.ventaForm.controls['unidadVenta'].setValue(10);
+    component.ventaForm.controls[inputIdUsuario].setValue(1);
+    component.ventaForm.controls[inputnombreUsuario].setValue('test 1');
+    component.ventaForm.controls[inputUnidadVenta].setValue(10);
 
 
     expect(component.ventaForm.valid).toBe(true);
   });
 
   it('Debe mostrar el formulario invalido', () => {
-    component.ventaForm.controls['idUsuario'].setValue('');
-    component.ventaForm.controls['nombreUsuario'].setValue('');
-    component.ventaForm.controls['unidadVenta'].setValue('');
-    component.ventaForm.controls['idArticulo'].setValue('');
+    component.ventaForm.controls[inputIdUsuario].setValue('');
+    component.ventaForm.controls[inputnombreUsuario].setValue('');
+    component.ventaForm.controls[inputUnidadVenta].setValue('');
+    component.ventaForm.controls[inputIdArticulo].setValue('');
 
     component.ngOnInit();
     expect(component.ventaForm.valid).toBe(false);

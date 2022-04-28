@@ -20,6 +20,10 @@ describe('ActualizarUsuarioComponent', () => {
   let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
   const listaUsuarios: Usuario[] = [new Usuario(1, 'test 1', '2022-04-05', '1222'), new Usuario(2, 'test 2', '2022-04-05', '12a22')];
+  const id = 'id';
+  const inputNombre = 'nombre';
+  const inputClave = 'clave';
+
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -71,9 +75,9 @@ describe('ActualizarUsuarioComponent', () => {
     component.getIdUsuario = 1;
     component.ngOnInit();
 
-    component.usuarioForm.controls['id'].setValue(1);
-    component.usuarioForm.controls['nombre'].setValue('test 1');
-    component.usuarioForm.controls['clave'].setValue('1222');
+    component.usuarioForm.controls[id].setValue(1);
+    component.usuarioForm.controls[inputNombre].setValue('test 1');
+    component.usuarioForm.controls[inputClave].setValue('1222');
 
     expect(component.usuarioForm.valid).toBe(true);
   });
@@ -85,9 +89,9 @@ describe('ActualizarUsuarioComponent', () => {
     component.getIdUsuario = 10;
     component.ngOnInit();
 
-    component.usuarioForm.controls['id'].setValue('');
-    component.usuarioForm.controls['nombre'].setValue('');
-    component.usuarioForm.controls['clave'].setValue('');
+    component.usuarioForm.controls[id].setValue('');
+    component.usuarioForm.controls[inputNombre].setValue('');
+    component.usuarioForm.controls[inputClave].setValue('');
 
     expect(component.usuarioForm.invalid).toBe(true);
   });
