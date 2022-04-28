@@ -7,8 +7,8 @@ import { BorrarArticuloComponent } from './components/borrar-articulo/borrar-art
 
 import { ArticuloComponent } from './components/articulo/articulo.component';
 import { SharedModule } from '@shared/shared.module';
-import { ArticuloService } from './shared/service/articulo.service';
-import { UsuarioService } from '../usuario/shared/service/usuario.service';
+import { ArticuloService } from '@articulo/shared/service/articulo.service';
+import { UsuarioService } from '@usuario/shared/service/usuario.service';
 
 import { ActualizarArticuloComponent } from './components/actualizar-articulo/actualizar-articulo.component';
 import { AlertaService, IAlertaService } from '@core/services/alerta.service';

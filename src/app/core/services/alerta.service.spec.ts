@@ -16,7 +16,7 @@ describe('AlertService', () => {
       imports: [HttpClientTestingModule],
       providers: [AlertaService, HttpService]
     });
-  service = TestBed.inject(AlertaService);
+     service = TestBed.inject(AlertaService);
   });
 
   it('Debe crear el componente ', () => {
@@ -25,17 +25,17 @@ describe('AlertService', () => {
   });
 
   it('Debe mostrar el mensaje de exito ', () => {
-    spyOn(service,'exito').and.returnValue(
+    spyOn(service, 'exito').and.returnValue(
          from(
             Swal.fire({
                 title: 'Éxito',
-                text: "mensaje",
+                text: 'mensaje',
                 icon: 'success'
             })
         ).pipe(switchMap(a => of({ confirmado: a.isConfirmed })))
     );
 
-    service.exito("mensaje");
+    service.exito('mensaje');
 
     expect(Swal.isVisible()).toBeTruthy();
     expect(Swal.getTitle().textContent).toBe('Éxito');
@@ -45,7 +45,7 @@ describe('AlertService', () => {
   it('Debe mostrar el mensaje de confirmacion ', () => {
 
     const mensajeConfirmacion = 'mensaje de confirmacion';
-    spyOn(service,'confirmacion').and.returnValue(
+    spyOn(service, 'confirmacion').and.returnValue(
         from(
             Swal.fire({
                 title: mensajeConfirmacion,
@@ -67,7 +67,7 @@ describe('AlertService', () => {
   });
 
   it('Debe mostrar el mensaje informativo ', () => {
-    spyOn(service,'informativa').and.returnValue(
+    spyOn(service, 'informativa').and.returnValue(
         from(
             Swal.fire({
                 html: 'titulo',
